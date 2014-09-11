@@ -1,0 +1,73 @@
+C51 COMPILER V7.06   INIT                                                                  09/12/2014 02:25:20 PAGE 1   
+
+
+C51 COMPILER V7.06, COMPILATION OF MODULE INIT
+OBJECT MODULE PLACED IN init.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE src\init.c BROWSE DEBUG OBJECTEXTEND PRINT(.\init.lst) OBJECT(init.obj)
+
+stmt level    source
+
+   1          
+   2          #include "../include/system.h"
+   3          #include "../include/macro.h"
+   4          
+   5          void InitVars();
+   6          void InitTasks();
+   7          
+   8          void InitSystem()
+   9          {
+  10   1              InitVars();
+  11   1              InitTasks();
+  12   1      }
+  13          
+  14          void InitVars()
+  15          {
+  16   1              uint8_t i;
+  17   1              uint8_t j;
+  18   1      
+  19   1              /*init SCB*/
+  20   1              gSCB.curTskNum = 0;
+  21   1              gSCB.nextTskNum = 0;    
+  22   1              gSCB.timeSlice = 0;
+  23   1              gSCB.intNestCnt = 0;
+  24   1              gSCB.schMutex = 0;      
+  25   1              gSCB.eventFlag = EVENT_OFF;
+  26   1              gSCB.sysMode = SYS_STOP;
+  27   1              gSCB.sysRunningFlag = SYS_OFF;
+  28   1              
+  29   1              /*init task queue*/     
+  30   1              for (i = 0; i < MAX_TSK_NUM; i++)
+  31   1              {
+  32   2                      gTskQueue[i] = 0;
+  33   2              }
+  34   1      
+  35   1              /*init task stacks*/
+  36   1              for (i = 0; i < MAX_TSK_NUM; i++)
+  37   1              {
+  38   2                      for (j = 0; j < MAX_TSK_STACK_SIZE; j++)
+  39   2                      {
+  40   3                              gTskStacks[i][j] = 0;
+  41   3                      }
+  42   2              }
+  43   1      }
+  44          
+  45          void InitTasks()
+  46          {
+  47   1      
+  48   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     57    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+C51 COMPILER V7.06   INIT                                                                  09/12/2014 02:25:20 PAGE 2   
+
+   DATA SIZE        =      8    ----
+   IDATA SIZE       =    130    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

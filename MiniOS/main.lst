@@ -1,0 +1,29 @@
+C51 COMPILER V7.06   MAIN                                                                  09/12/2014 02:25:20 PAGE 1   
+
+
+C51 COMPILER V7.06, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE src\main.c BROWSE DEBUG OBJECTEXTEND PRINT(.\main.lst) OBJECT(main.obj)
+
+stmt level    source
+
+   1          #include "../include/init.h"
+   2          
+   3          void main()
+   4          {
+   5   1              InitSystem();   
+   6   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =      3    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

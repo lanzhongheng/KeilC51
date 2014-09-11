@@ -1,0 +1,129 @@
+BL51 BANKED LINKER/LOCATER V5.03                                                        09/12/2014  02:25:20  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V5.03, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE init.obj, main.obj, C:\Keil\C51\LIB\C51S.LIB TO MiniOS RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  init.obj (INIT)
+  main.obj (MAIN)
+  C:\Keil\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  MiniOS (INIT)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0008H     UNIT         ?DT?INIT
+            IDATA   0010H     0082H     UNIT         ?ID?INIT
+            IDATA   0092H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0032H     UNIT         ?PR?INITVARS?INIT
+            CODE    0035H     000CH     UNIT         ?C_C51STARTUP
+            CODE    0041H     0006H     UNIT         ?PR?INITSYSTEM?INIT
+            CODE    0047H     0003H     UNIT         ?PR?MAIN?MAIN
+            CODE    004AH     0001H     UNIT         ?PR?INITTASKS?INIT
+
+
+
+OVERLAY MAP OF MODULE:   MiniOS (INIT)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN
+  +--> ?PR?INITSYSTEM?INIT
+
+?PR?INITSYSTEM?INIT
+  +--> ?PR?INITVARS?INIT
+  +--> ?PR?INITTASKS?INIT
+
+
+
+SYMBOL TABLE OF MODULE:  MiniOS (INIT)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+BL51 BANKED LINKER/LOCATER V5.03                                                      09/12/2014  02:25:20  PAGE 2
+
+
+  -------         MODULE        INIT
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  I:0010H         PUBLIC        gTskStacks
+  C:0041H         PUBLIC        InitSystem
+  C:004AH         PUBLIC        InitTasks
+  I:0074H         PUBLIC        gTskQueue
+  C:0003H         PUBLIC        InitVars
+  I:0079H         PUBLIC        gTCBs
+  D:0008H         PUBLIC        gSCB
+  -------         PROC          INITSYSTEM
+  C:0041H         LINE#         8
+  C:0041H         LINE#         9
+  C:0041H         LINE#         10
+  C:0044H         LINE#         11
+  -------         ENDPROC       INITSYSTEM
+  -------         PROC          INITVARS
+  -------         DO            
+  D:0007H         SYMBOL        i
+  D:0006H         SYMBOL        j
+  -------         ENDDO         
+  C:0003H         LINE#         14
+  C:0003H         LINE#         15
+  C:0003H         LINE#         20
+  C:0006H         LINE#         21
+  C:0008H         LINE#         22
+  C:000AH         LINE#         23
+  C:000CH         LINE#         24
+  C:000EH         LINE#         25
+  C:0010H         LINE#         26
+  C:0012H         LINE#         27
+  C:0014H         LINE#         30
+  C:0014H         LINE#         31
+  C:0014H         LINE#         32
+  C:001DH         LINE#         33
+  C:001DH         LINE#         36
+  C:001FH         LINE#         37
+  C:001FH         LINE#         38
+  C:0021H         LINE#         39
+  C:0021H         LINE#         40
+  C:002CH         LINE#         41
+  C:0030H         LINE#         42
+  C:0034H         LINE#         43
+  -------         ENDPROC       INITVARS
+  -------         PROC          INITTASKS
+  C:004AH         LINE#         45
+  C:004AH         LINE#         46
+  C:004AH         LINE#         48
+  -------         ENDPROC       INITTASKS
+  -------         ENDMOD        INIT
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:0047H         PUBLIC        main
+  -------         PROC          MAIN
+  C:0047H         LINE#         3
+  C:0047H         LINE#         4
+  C:0047H         LINE#         5
+BL51 BANKED LINKER/LOCATER V5.03                                                      09/12/2014  02:25:20  PAGE 3
+
+
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+Program Size: data=147.0 xdata=0 code=75
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
