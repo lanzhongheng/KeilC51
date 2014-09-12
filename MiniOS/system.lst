@@ -1,0 +1,35 @@
+C51 COMPILER V7.06   SYSTEM                                                                09/13/2014 03:08:21 PAGE 1   
+
+
+C51 COMPILER V7.06, COMPILATION OF MODULE SYSTEM
+OBJECT MODULE PLACED IN system.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE src\system.c BROWSE DEBUG OBJECTEXTEND PRINT(.\system.lst) OBJECT(system.ob
+                    -j)
+
+stmt level    source
+
+   1          
+   2          #include "../include/system.h"
+   3          #include "../include/types.h"
+   4          
+   5          struct SCB gSCB;
+   6          
+   7          uint8_t idata gTskStacks[MAX_TSK_NUM][MAX_TSK_STACK_SIZE];
+   8          
+   9          uint8_t idata gTskQueue[MAX_TSK_NUM];
+  10          
+  11          struct TCB idata gTCBs[MAX_TSK_NUM];
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   ----    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      8    ----
+   IDATA SIZE       =    130    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

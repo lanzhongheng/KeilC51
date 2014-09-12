@@ -4,6 +4,8 @@
 
 void InitVars();
 void InitTasks();
+void setTaskStack(TaskPtr task, uint8_t taskNum);
+void setTCB(uint8_t taskNum);
 
 void InitSystem()
 {
@@ -44,5 +46,38 @@ void InitVars()
 
 void InitTasks()
 {
+	uint8_t i;
 
+	/*push tasks' entries into task stack*/
+	setTaskStack(Task0, 0);	
+	setTaskStack(Task1, 1);
+	setTaskStack(Task2, 2);
+	setTaskStack(Task3, 3);
+	setTaskStack(Task4, 4);
+
+	/*set TCBs*/
+	for (i = 0; i < MAX_TSK_NUM; i++)
+	{
+		setTCB(i);
+	}
+
+	/*add task to task queue, NO.0 task is an idle task*/
+	for (i = 0; i < MAX_TSK_NUM; i++)
+	{
+		gTskQueue[i] = i;
+	}
+}
+
+void setTaskStack(TaskPtr task, uint8_t taskNum)
+{
+	gTskStacks[taskNum][0] = (uint8_t)((uint16_t)task & 0xff);
+	gTskStacks[taskNum][1] = (uint8_t)(((uint16_t)task >> 8) & 0xff);		
+} 
+
+void setTCB(uint8_t taskNum)
+{
+	gTCBs[taskNum].delayTime = 0;
+	gTCBs[taskNum].taskSP = (uint16_t)(& gTskStacks[taskNum][1]) & 0xff;
+	gTCBs[taskNum].curTskStat = TSK_READY;
+	gTCBs[taskNum].storeTskStat = 0;
 }

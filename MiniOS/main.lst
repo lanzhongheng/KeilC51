@@ -1,4 +1,4 @@
-C51 COMPILER V7.06   MAIN                                                                  09/12/2014 02:25:20 PAGE 1   
+C51 COMPILER V7.06   MAIN                                                                  09/13/2014 03:08:21 PAGE 1   
 
 
 C51 COMPILER V7.06, COMPILATION OF MODULE MAIN
@@ -7,16 +7,79 @@ COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE src\main.c BROWSE DEBUG OBJECTEXTEN
 
 stmt level    source
 
-   1          #include "../include/init.h"
-   2          
-   3          void main()
-   4          {
-   5   1              InitSystem();   
-   6   1      }
+   1          
+   2          #include <reg52.h>
+   3          #include "../include/init.h"
+   4          #include "../include/system.h"
+   5          
+   6          void SystemOn();
+   7          
+   8          void main()
+   9          {
+  10   1              InitSystem();
+  11   1      
+  12   1              SystemOn();     
+  13   1      }
+  14          
+  15          /***********************/
+  16          
+  17          void SystemOn()
+  18          {
+  19   1              /*get task number from task queue*/
+  20   1              gSCB.nextTskNum = gTskQueue[1];
+  21   1              gSCB.curTskNum = gSCB.nextTskNum;
+  22   1              
+  23   1              /*get task entry from TCB*/
+  24   1              SP = gTCBs[gSCB.curTskNum].taskSP;
+  25   1      }
+  26          
+  27          /***********************/
+  28          
+  29          void Task0()
+  30          {
+  31   1              while (1)
+  32   1              {
+  33   2                      //TODO
+  34   2              }
+  35   1      }
+  36          
+  37          void Task1()
+  38          {
+  39   1              while (1)
+  40   1              {
+  41   2                      //TODO
+  42   2              }
+  43   1      }
+  44          
+  45          void Task2()
+  46          {
+  47   1              while (1)
+  48   1              {
+  49   2                      //TODO
+  50   2              }
+  51   1      }
+  52          
+  53          void Task3()
+  54          {
+  55   1              while (1)
+C51 COMPILER V7.06   MAIN                                                                  09/13/2014 03:08:21 PAGE 2   
+
+  56   1              {
+  57   2                      //TODO
+  58   2              }
+  59   1      }
+  60          
+  61          void Task4()
+  62          {
+  63   1              while (1)
+  64   1              {
+  65   2                      //TODO
+  66   2              }
+  67   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =      3    ----
+   CODE SIZE        =     36    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

@@ -3,6 +3,7 @@
 #define	SYSTEM_H
 
 #include "types.h"
+#include "config.h"
 
 /*system control block*/
 struct SCB {
@@ -31,8 +32,8 @@ struct SCB {
 
 /*task control block*/
 struct TCB {
-	/*task time slice, unit: jiffies*/
-	uint16_t timeSlice;
+	/*task delay time, unit: jiffies*/
+	uint16_t delayTime;
 
 	/*task stack pointer*/
 	uint8_t taskSP;
@@ -46,25 +47,24 @@ struct TCB {
 
 
 /*system control block variable*/
-struct SCB gSCB;
+extern struct SCB gSCB;
 
-/*maximum task number*/
-//#ifndef MAX_TSK_NUM
-#define	MAX_TSK_NUM		5
-//#endif
 
-/*maximum task stack size*/
-//#ifndef MAX_TSK_STACK_SIZE
-#define	MAX_TSK_STACK_SIZE	20
-//#endif
 
 /*task stacks*/
-uint8_t idata gTskStacks[MAX_TSK_NUM][MAX_TSK_STACK_SIZE];
+extern uint8_t idata gTskStacks[MAX_TSK_NUM][MAX_TSK_STACK_SIZE];
 
 /*task queue*/
-uint8_t idata gTskQueue[MAX_TSK_NUM];
+extern uint8_t idata gTskQueue[MAX_TSK_NUM];
 
 /*task TCBs*/
-struct TCB idata gTCBs[MAX_TSK_NUM];
+extern struct TCB idata gTCBs[MAX_TSK_NUM];
+
+/*tasks declaration*/
+void Task0();
+void Task1();
+void Task2();
+void Task3();
+void Task4();
 
 #endif

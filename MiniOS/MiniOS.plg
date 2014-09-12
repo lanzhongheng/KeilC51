@@ -8,62 +8,143 @@ Project File Date:  09/12/2014
 
 <h2>Output:</h2>
 Build target 'Target 1'
-compiling main.c...
-assembling main.src...
-linking...
-Program Size: data=8.0 xdata=0 code=0
-creating hex file from "MiniOS"...
-"MiniOS" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
 compiling init.c...
-compiling main.c...
-linking...
-*** WARNING L10: CANNOT DETERMINE ROOT SEGMENT
-Program Size: data=0.0 xdata=0 code=0
-creating hex file from "MiniOS"...
-"MiniOS" - 0 Error(s), 1 Warning(s).
-Build target 'Target 1'
-compiling init.c...
-compiling main.c...
-linking...
-Program Size: data=9.0 xdata=0 code=16
-creating hex file from "MiniOS"...
-"MiniOS" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-compiling init.c...
-SRC\INIT.C(11): warning C206: 'InitTask': missing function-prototype
-SRC\INIT.C(26): error C141: syntax error near 'uint8_t'
-SRC\INIT.C(26): error C202: 'i': undefined identifier
-SRC\INIT.C(27): error C141: syntax error near 'uint8_t'
-SRC\INIT.C(27): error C202: 'j': undefined identifier
-SRC\INIT.C(30): error C202: 'i': undefined identifier
-SRC\INIT.C(32): error C202: 'i': undefined identifier
-SRC\INIT.C(36): error C202: 'i': undefined identifier
-SRC\INIT.C(38): error C202: 'j': undefined identifier
-SRC\INIT.C(40): error C202: 'i': undefined identifier
+SRC\INIT.C(7): error C141: syntax error near 'task', expected ')'
+SRC\INIT.C(53): error C208: '_setTaskStack': too many actual parameters
+SRC\INIT.C(54): error C208: '_setTaskStack': too many actual parameters
+SRC\INIT.C(55): error C208: '_setTaskStack': too many actual parameters
+SRC\INIT.C(56): error C208: '_setTaskStack': too many actual parameters
+SRC\INIT.C(57): error C208: '_setTaskStack': too many actual parameters
+SRC\INIT.C(72): error C141: syntax error near 'task', expected ')'
+SRC\INIT.C(74): error C202: 'taskNum': undefined identifier
+SRC\INIT.C(75): error C202: 'taskNum': undefined identifier
 compiling main.c...
 Target not created
 Build target 'Target 1'
 compiling init.c...
-SRC\INIT.C(11): warning C206: 'InitTask': missing function-prototype
+SRC\INIT.C(50): warning C280: 'j': unreferenced local variable
 compiling main.c...
 linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?INITTASKS?INIT
-*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
-    SYMBOL:  INITTASK
-    MODULE:  init.obj (INIT)
-*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
-    SYMBOL:  INITTASK
-    MODULE:  init.obj (INIT)
-    ADDRESS: 0045H
-Program Size: data=147.0 xdata=0 code=75
-creating hex file from "MiniOS"...
-"MiniOS" - 0 Error(s), 4 Warning(s).
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  GSCB
+    MODULE:  main.obj (MAIN)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  GTCBS
+    MODULE:  main.obj (MAIN)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  GTSKQUEUE
+    MODULE:  main.obj (MAIN)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  GTSKSTACKS
+    MODULE:  main.obj (MAIN)
+*** ERROR L107: ADDRESS SPACE OVERFLOW
+    SPACE:   IDATA   
+    SEGMENT: ?ID?MAIN
+    LENGTH:  0082H
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+    SYMBOL:  GTCBS
+    SEGMENT: ?ID?MAIN
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+    SYMBOL:  GTSKQUEUE
+    SEGMENT: ?ID?MAIN
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+    SYMBOL:  GTSKSTACKS
+    SEGMENT: ?ID?MAIN
+Program Size: data=287.0 xdata=0 code=250
+Target not created
+Build target 'Target 1'
+compiling init.c...
+SRC\INIT.C(50): warning C280: 'j': unreferenced local variable
+compiling main.c...
+linking...
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  GSCB
+    MODULE:  main.obj (MAIN)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  GTCBS
+    MODULE:  main.obj (MAIN)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  GTSKQUEUE
+    MODULE:  main.obj (MAIN)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  GTSKSTACKS
+    MODULE:  main.obj (MAIN)
+*** ERROR L107: ADDRESS SPACE OVERFLOW
+    SPACE:   IDATA   
+    SEGMENT: ?ID?MAIN
+    LENGTH:  0082H
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+    SYMBOL:  GTCBS
+    SEGMENT: ?ID?MAIN
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+    SYMBOL:  GTSKQUEUE
+    SEGMENT: ?ID?MAIN
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+    SYMBOL:  GTSKSTACKS
+    SEGMENT: ?ID?MAIN
+Program Size: data=287.0 xdata=0 code=250
+Target not created
 Build target 'Target 1'
 compiling init.c...
 compiling main.c...
+compiling system.c...
+SRC\SYSTEM.C(4): error C129: missing ';' before 'idata'
+Target not created
+Build target 'Target 1'
+compiling init.c...
+compiling main.c...
+compiling system.c...
+SRC\SYSTEM.C(6): error C202: 'MAX_TSK_NUM': undefined identifier
+SRC\SYSTEM.C(6): error C136: invalid dimension size: [0]
+SRC\SYSTEM.C(6): error C136: invalid dimension size: [0]
+SRC\SYSTEM.C(8): error C202: 'MAX_TSK_NUM': undefined identifier
+SRC\SYSTEM.C(8): error C136: invalid dimension size: [0]
+SRC\SYSTEM.C(10): error C202: 'MAX_TSK_NUM': undefined identifier
+SRC\SYSTEM.C(10): error C136: invalid dimension size: [0]
+Target not created
+Build target 'Target 1'
+compiling init.c...
+compiling main.c...
+compiling system.c...
 linking...
-Program Size: data=147.0 xdata=0 code=75
+Program Size: data=148.0 xdata=0 code=250
+creating hex file from "MiniOS"...
+"MiniOS" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling init.c...
+compiling main.c...
+compiling system.c...
+linking...
+Program Size: data=148.0 xdata=0 code=250
+creating hex file from "MiniOS"...
+"MiniOS" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling init.c...
+compiling main.c...
+compiling system.c...
+linking...
+Program Size: data=148.0 xdata=0 code=250
+creating hex file from "MiniOS"...
+"MiniOS" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling init.c...
+compiling main.c...
+compiling system.c...
+linking...
+Program Size: data=148.0 xdata=0 code=250
+creating hex file from "MiniOS"...
+"MiniOS" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling init.c...
+compiling main.c...
+SRC\MAIN.C(22): error C202: 'SP': undefined identifier
+compiling system.c...
+Target not created
+Build target 'Target 1'
+compiling init.c...
+compiling main.c...
+compiling system.c...
+linking...
+Program Size: data=148.0 xdata=0 code=273
 creating hex file from "MiniOS"...
 "MiniOS" - 0 Error(s), 0 Warning(s).
