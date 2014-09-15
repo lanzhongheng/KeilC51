@@ -10,11 +10,13 @@ Group (lib)
 File 1,1,<.\src\init.c><init.c> 0x0 
 File 1,1,<.\src\main.c><main.c> 0x0 
 File 1,1,<.\src\system.c><system.c> 0x0 
+File 1,1,<.\src\schedule.c><schedule.c> 0x0 
 File 2,5,<.\include\macro.h><macro.h> 0x0 
 File 2,5,<.\include\system.h><system.h> 0x0 
 File 2,5,<.\include\types.h><types.h> 0x0 
 File 2,5,<.\include\init.h><init.h> 0x0 
 File 2,5,<.\include\config.h><config.h> 0x0 
+File 2,5,<.\include\schedule.h><schedule.h> 0x0 
 File 3,4,<C:\Keil\C51\LIB\C51S.LIB><C51S.LIB> 0x3DB72D1A 
 
 
@@ -120,5 +122,43 @@ Options 1,0,0  // Target 'Target 1'
  FLASH1 { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
  FLASH2 ()
  FLASH3 ()
+EndOpt
+
+Options 1,1,2  // File 'main.c'
+ PropFld { 2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ IncBld=2
+ AlwaysBuild=2
+ GenAsm=1
+ AsmAsm=1
+ PublicsOnly=2
+ StopCode=11
+ CustArgs ()
+ LibMods ()
+ BankNo=65535
+ C51FL=177119914
+ C51VA=0
+ C51MSC ()
+ C51DEF ()
+ C51UDF ()
+ INCC5 ()
+EndOpt
+
+Options 1,1,4  // File 'schedule.c'
+ PropFld { 2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ IncBld=2
+ AlwaysBuild=2
+ GenAsm=1
+ AsmAsm=1
+ PublicsOnly=2
+ StopCode=11
+ CustArgs ()
+ LibMods ()
+ BankNo=65535
+ C51FL=177119914
+ C51VA=0
+ C51MSC ()
+ C51DEF ()
+ C51UDF ()
+ INCC5 ()
 EndOpt
 

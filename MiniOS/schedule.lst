@@ -1,0 +1,305 @@
+C51 COMPILER V7.06   SCHEDULE                                                              09/15/2014 23:51:52 PAGE 1   
+
+
+C51 COMPILER V7.06, COMPILATION OF MODULE SCHEDULE
+OBJECT MODULE PLACED IN src\schedule.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE src\schedule.c BROWSE DEBUG OBJECTEXTEND PRINT(.\schedule.lst) SRC(.\schedu
+                    -le.SRC)
+
+stmt level    source
+
+   1          
+   2          #include <reg52.h>
+   3          #include "../include/system.h"
+   4          #include "../include/macro.h"
+   5          
+   6          void UpdateTskQueue();
+   7          
+   8          void UpdatePriorTskQueue();
+   9          
+  10          int8_t CanSchedule();
+  11          
+  12          void RegisterTask(uint8_t taskNum)
+  13          {
+  14   1              uint8_t pos;
+  15   1              for (pos = 0; pos < MAX_TSK_NUM; pos++)
+  16   1              {
+  17   2                      if (0 == gTskQueue[pos])
+  18   2                      {
+  19   3                              gTskQueue[pos] = taskNum;
+  20   3                              gTCBs[taskNum].curTskStat = TSK_READY;
+  21   3                              break;
+  22   3                      }
+  23   2              }
+  24   1      }
+  25          
+  26          void RegisterPriorTask(uint8_t taskNum)
+  27          {
+  28   1              uint8_t pos;
+  29   1              for (pos = 0; pos < MAX_TSK_NUM; pos++)
+  30   1              {
+  31   2                      if (0 == gPriorTskQueue[pos])
+  32   2                      {
+  33   3                              gPriorTskQueue[pos] = taskNum;
+  34   3                              gTCBs[taskNum].curTskStat = TSK_READY;
+  35   3                              break;
+  36   3                      }
+  37   2              }
+  38   1      
+  39   1              gSCB.priorityFlag = PRIORITY_ON;
+  40   1      }
+  41          
+  42          uint8_t GetReadyTsk()
+  43          {
+  44   1              uint8_t taskNum;
+  45   1      
+  46   1              taskNum = gTskQueue[0];
+  47   1      
+  48   1              if (0 != taskNum)
+  49   1              {
+  50   2                      UpdateTskQueue();
+  51   2              }
+  52   1      
+  53   1              return taskNum; 
+  54   1      }
+C51 COMPILER V7.06   SCHEDULE                                                              09/15/2014 23:51:52 PAGE 2   
+
+  55          
+  56          uint8_t GetReadyPriorTsk()
+  57          {
+  58   1              uint8_t taskNum;
+  59   1      
+  60   1              taskNum = gPriorTskQueue[0];
+  61   1      
+  62   1              if (0 != taskNum)
+  63   1              {
+  64   2                      UpdatePriorTskQueue();
+  65   2              }
+  66   1      
+  67   1              if (0 == gPriorTskQueue[0])
+  68   1              {
+  69   2                      gSCB.priorityFlag = PRIORITY_OFF;
+  70   2              }
+  71   1      
+  72   1              return taskNum; 
+  73   1      }
+  74          
+  75          void DeregisterTask(uint8_t taskNum)
+  76          {
+  77   1              uint8_t pos;
+  78   1              for (pos = 0; pos < MAX_TSK_NUM; pos++)
+  79   1              {
+  80   2                      if (taskNum == gTskQueue[pos])
+  81   2                      {
+  82   3                              gTskQueue[pos] = 0;
+  83   3                              UpdateTskQueue();
+  84   3                              break;
+  85   3                      }
+  86   2              }
+  87   1      }
+  88          
+  89          uint8_t DeregisterPriorTask(uint8_t taskNum)
+  90          {
+  91   1              uint8_t taskFound = 0;
+  92   1              uint8_t pos;
+  93   1              for (pos = 0; pos < MAX_TSK_NUM; pos++)
+  94   1              {
+  95   2                      if (taskNum == gPriorTskQueue[pos])
+  96   2                      {
+  97   3                              taskFound = 1;
+  98   3                              gPriorTskQueue[pos] = 0;
+  99   3                              UpdatePriorTskQueue();
+ 100   3                              break;
+ 101   3                      }
+ 102   2              }
+ 103   1      
+ 104   1              if (0 == gPriorTskQueue[0])
+ 105   1              {
+ 106   2                      gSCB.priorityFlag = PRIORITY_OFF;
+ 107   2              }
+ 108   1      
+ 109   1              return taskFound;
+ 110   1      }
+ 111          
+ 112          void UpdateTskQueue()
+ 113          {
+ 114   1              uint8_t newPos;
+ 115   1              uint8_t oldPos;
+ 116   1              for (newPos = 0, oldPos = 0; oldPos < MAX_TSK_NUM; oldPos++)
+C51 COMPILER V7.06   SCHEDULE                                                              09/15/2014 23:51:52 PAGE 3   
+
+ 117   1              {
+ 118   2                      if (0 != gTskQueue[oldPos])
+ 119   2                      {
+ 120   3                              gPriorTskQueue[newPos] = gPriorTskQueue[oldPos];
+ 121   3                              newPos++; 
+ 122   3                      }
+ 123   2      
+ 124   2                      if (MAX_TSK_NUM - 1 == oldPos)
+ 125   2                      {
+ 126   3                              gPriorTskQueue[oldPos] = 0;
+ 127   3                      }
+ 128   2              }
+ 129   1      }
+ 130          
+ 131          void UpdatePriorTskQueue()
+ 132          {
+ 133   1              uint8_t newPos;
+ 134   1              uint8_t oldPos;
+ 135   1              for (newPos = 0, oldPos = 0; oldPos < MAX_TSK_NUM; oldPos++)
+ 136   1              {
+ 137   2                      if (0 != gPriorTskQueue[oldPos])
+ 138   2                      {
+ 139   3                              gPriorTskQueue[newPos] = gPriorTskQueue[oldPos];
+ 140   3                              newPos++; 
+ 141   3                      }
+ 142   2      
+ 143   2                      if (MAX_TSK_NUM - 1 == oldPos)
+ 144   2                      {
+ 145   3                              gPriorTskQueue[oldPos] = 0;
+ 146   3                      }
+ 147   2              }
+ 148   1      }
+ 149          
+ 150          void ScheduleTask()
+ 151          {
+ 152   1              EA = INT_OFF;
+ 153   1      
+ 154   1              if (!CanSchedule())
+ 155   1              {
+ 156   2                      EA = INT_ON;
+ 157   2                      return;
+ 158   2              }
+ 159   1      
+ 160   1              if (0 == gSCB.nextTskNum)
+ 161   1              {
+ 162   2                      if (PRIORITY_ON == gSCB.priorityFlag)
+ 163   2                      {
+ 164   3                              gSCB.nextTskNum = GetReadyPriorTsk();
+ 165   3                      }
+ 166   2                      else
+ 167   2                      {
+ 168   3                              gSCB.nextTskNum = GetReadyTsk();
+ 169   3                      }
+ 170   2              }
+ 171   1      
+ 172   1              gSCB.timeSlice = SYS_TIMESLICE;
+ 173   1      
+ 174   1              if (gSCB.curTskNum != gSCB.nextTskNum)
+ 175   1              {
+ 176   2                      /*push current task data into task stack*/
+ 177   2                      __asm PUSH ACC
+ 178   2                      __asm PUSH B
+C51 COMPILER V7.06   SCHEDULE                                                              09/15/2014 23:51:52 PAGE 4   
+
+ 179   2                      __asm PUSH PSW
+ 180   2                      __asm PUSH AR0
+ 181   2                      __asm PUSH AR1
+ 182   2                      //__asm PUSH AR2
+ 183   2                      //__asm PUSH AR3
+ 184   2                      __asm PUSH AR4
+ 185   2                      __asm PUSH AR5
+ 186   2                      __asm PUSH AR6
+ 187   2                      __asm PUSH AR7
+ 188   2      
+ 189   2                      gTCBs[gSCB.curTskNum].taskSP = SP;
+ 190   2                      gSCB.curTskNum = gSCB.nextTskNum;
+ 191   2                      gSCB.nextTskNum = 0;
+ 192   2                      SP = gTCBs[gSCB.curTskNum].taskSP;
+ 193   2      
+ 194   2                      /*pop new task data from task stack*/
+ 195   2                      __asm POP AR7
+ 196   2                      __asm POP AR6
+ 197   2                      __asm POP AR5
+ 198   2                      __asm POP AR4
+ 199   2                      //__asm POP AR3
+ 200   2                      //__asm POP AR2
+ 201   2                      __asm POP AR1
+ 202   2                      __asm POP AR0
+ 203   2                      __asm POP PSW
+ 204   2                      __asm POP B
+ 205   2                      __asm POP ACC
+ 206   2              }
+ 207   1      
+ 208   1              EA = INT_ON;
+ 209   1      }
+ 210          
+ 211          int8_t CanSchedule()
+ 212          {
+ 213   1              if (SYS_ON != gSCB.sysRunningFlag)
+ 214   1              {
+ 215   2                      return 0;
+ 216   2              }
+ 217   1              
+ 218   1              if (SCHMUTEX_ON == gSCB.schMutex)
+ 219   1              {
+ 220   2                      return 0;
+ 221   2              }
+ 222   1      
+ 223   1              if (0 != gSCB.intNestCnt)
+ 224   1              {
+ 225   2                      return 0;
+ 226   2              }
+ 227   1      
+ 228   1              if (SYS_SERVICE == gSCB.sysMode)
+ 229   1              {
+ 230   2                      return 0;
+ 231   2              }
+ 232   1      
+ 233   1              if (0 != gSCB.timeSlice)
+ 234   1              {
+ 235   2                      return 0;
+ 236   2              }
+ 237   1      
+ 238   1              return 1;
+ 239   1      }
+ 240          
+C51 COMPILER V7.06   SCHEDULE                                                              09/15/2014 23:51:52 PAGE 5   
+
+ 241          void LockSchMutex()
+ 242          {
+ 243   1              EA = INT_OFF;
+ 244   1              gSCB.schMutex = SCHMUTEX_ON;
+ 245   1              EA = INT_ON;
+ 246   1      }
+ 247          
+ 248          void UnlockSchMutex()
+ 249          {
+ 250   1              EA = INT_OFF;
+ 251   1              gSCB.schMutex = SCHMUTEX_OFF;
+ 252   1              EA = INT_ON;
+ 253   1      }
+ 254          
+ 255          void IncIntNestCnt()
+ 256          {
+ 257   1              EA = INT_OFF;
+ 258   1              if (gSCB.intNestCnt < MAX_INTNEST_CNT)
+ 259   1              {
+ 260   2                      gSCB.intNestCnt++;
+ 261   2              }
+ 262   1              EA = INT_ON;
+ 263   1      }
+ 264          
+ 265          void DecIntNestCnt()
+ 266          {
+ 267   1              EA = INT_OFF;
+ 268   1              if (gSCB.intNestCnt > 0)
+ 269   1              {
+ 270   2                      gSCB.intNestCnt--;
+ 271   2              }
+ 272   1              EA = INT_ON;
+ 273   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    446    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       7
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

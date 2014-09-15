@@ -1,0 +1,1218 @@
+A51 MACRO ASSEMBLER  SCHEDULE                                                             09/15/2014 23:51:53 PAGE     1
+
+
+MACRO ASSEMBLER A51 V7.07
+OBJECT MODULE PLACED IN schedule.OBJ
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE schedule.src PR(.\schedule.ls1) EP DEBUG
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     ; .\schedule.SRC generated from: src\schedule.c
+                       2     ; COMPILER INVOKED BY:
+                       3     ;        C:\Keil\C51\BIN\C51.EXE src\schedule.c BROWSE DEBUG OBJECTEXTEND PRINT(.\schedule.
+                             lst) SRC(.\schedule.SRC)
+                       4     
+                       5     $nomod51 
+                       6     
+                       7     NAME    SCHEDULE
+                       8     
+  0080                 9     P0      DATA    080H
+  0090                10     P1      DATA    090H
+  00A0                11     P2      DATA    0A0H
+  00B0                12     P3      DATA    0B0H
+  00B4                13     T0      BIT     0B0H.4
+  00D6                14     AC      BIT     0D0H.6
+  00B5                15     T1      BIT     0B0H.5
+  0090                16     T2      BIT     090H.0
+  00AF                17     EA      BIT     0A8H.7
+  00A8                18     IE      DATA    0A8H
+  00CE                19     EXF2    BIT     0C8H.6
+  00B7                20     RD      BIT     0B0H.7
+  00AC                21     ES      BIT     0A8H.4
+  00B8                22     IP      DATA    0B8H
+  0098                23     RI      BIT     098H.0
+  00B2                24     INT0    BIT     0B0H.2
+  00D7                25     CY      BIT     0D0H.7
+  0099                26     TI      BIT     098H.1
+  00B3                27     INT1    BIT     0B0H.3
+  00CB                28     RCAP2H  DATA    0CBH
+  00BC                29     PS      BIT     0B8H.4
+  0081                30     SP      DATA    081H
+  0091                31     T2EX    BIT     090H.1
+  00D2                32     OV      BIT     0D0H.2
+  00CA                33     RCAP2L  DATA    0CAH
+  00C9                34     C_T2    BIT     0C8H.1
+  00B6                35     WR      BIT     0B0H.6
+  00CD                36     RCLK    BIT     0C8H.5
+  00CC                37     TCLK    BIT     0C8H.4
+  0099                38     SBUF    DATA    099H
+  0087                39     PCON    DATA    087H
+  0098                40     SCON    DATA    098H
+  0089                41     TMOD    DATA    089H
+  0088                42     TCON    DATA    088H
+  0089                43     IE0     BIT     088H.1
+  008B                44     IE1     BIT     088H.3
+  00F0                45     B       DATA    0F0H
+  00C8                46     CP_RL2  BIT     0C8H.0
+  00E0                47     ACC     DATA    0E0H
+  00A9                48     ET0     BIT     0A8H.1
+  00AB                49     ET1     BIT     0A8H.3
+  008D                50     TF0     BIT     088H.5
+  00AD                51     ET2     BIT     0A8H.5
+  008F                52     TF1     BIT     088H.7
+  00CF                53     TF2     BIT     0C8H.7
+  009A                54     RB8     BIT     098H.2
+  008C                55     TH0     DATA    08CH
+  00A8                56     EX0     BIT     0A8H.0
+  0088                57     IT0     BIT     088H.0
+A51 MACRO ASSEMBLER  SCHEDULE                                                             09/15/2014 23:51:53 PAGE     2
+
+  008D                58     TH1     DATA    08DH
+  009B                59     TB8     BIT     098H.3
+  00AA                60     EX1     BIT     0A8H.2
+  008A                61     IT1     BIT     088H.2
+  00CD                62     TH2     DATA    0CDH
+  00D0                63     P       BIT     0D0H.0
+  009F                64     SM0     BIT     098H.7
+  008A                65     TL0     DATA    08AH
+  009E                66     SM1     BIT     098H.6
+  008B                67     TL1     DATA    08BH
+  009D                68     SM2     BIT     098H.5
+  00CC                69     TL2     DATA    0CCH
+  00B9                70     PT0     BIT     0B8H.1
+  00BB                71     PT1     BIT     0B8H.3
+  00D3                72     RS0     BIT     0D0H.3
+  00BD                73     PT2     BIT     0B8H.5
+  008C                74     TR0     BIT     088H.4
+  00D4                75     RS1     BIT     0D0H.4
+  008E                76     TR1     BIT     088H.6
+  00CA                77     TR2     BIT     0C8H.2
+  00B8                78     PX0     BIT     0B8H.0
+  00BA                79     PX1     BIT     0B8H.2
+  0083                80     DPH     DATA    083H
+  0082                81     DPL     DATA    082H
+  00CB                82     EXEN2   BIT     0C8H.3
+  009C                83     REN     BIT     098H.4
+  00C8                84     T2CON   DATA    0C8H
+  00B0                85     RXD     BIT     0B0H.0
+  00B1                86     TXD     BIT     0B0H.1
+  00D5                87     F0      BIT     0D0H.5
+  00D0                88     PSW     DATA    0D0H
+                      89     ?PR?_RegisterTask?SCHEDULE               SEGMENT CODE 
+                      90     ?PR?_RegisterPriorTask?SCHEDULE          SEGMENT CODE 
+                      91     ?PR?GetReadyTsk?SCHEDULE                 SEGMENT CODE 
+                      92     ?DT?GetReadyTsk?SCHEDULE                 SEGMENT DATA OVERLAYABLE 
+                      93     ?PR?GetReadyPriorTsk?SCHEDULE            SEGMENT CODE 
+                      94     ?DT?GetReadyPriorTsk?SCHEDULE            SEGMENT DATA OVERLAYABLE 
+                      95     ?PR?_DeregisterTask?SCHEDULE             SEGMENT CODE 
+                      96     ?DT?_DeregisterTask?SCHEDULE             SEGMENT DATA OVERLAYABLE 
+                      97     ?PR?_DeregisterPriorTask?SCHEDULE        SEGMENT CODE 
+                      98     ?DT?_DeregisterPriorTask?SCHEDULE        SEGMENT DATA OVERLAYABLE 
+                      99     ?PR?UpdateTskQueue?SCHEDULE              SEGMENT CODE 
+                     100     ?PR?UpdatePriorTskQueue?SCHEDULE         SEGMENT CODE 
+                     101     ?PR?ScheduleTask?SCHEDULE                SEGMENT CODE 
+                     102     ?PR?CanSchedule?SCHEDULE                 SEGMENT CODE 
+                     103     ?PR?LockSchMutex?SCHEDULE                SEGMENT CODE 
+                     104     ?PR?UnlockSchMutex?SCHEDULE              SEGMENT CODE 
+                     105     ?PR?IncIntNestCnt?SCHEDULE               SEGMENT CODE 
+                     106     ?PR?DecIntNestCnt?SCHEDULE               SEGMENT CODE 
+                     107             EXTRN   IDATA (gTskQueue)
+                     108             EXTRN   IDATA (gPriorTskQueue)
+                     109             EXTRN   IDATA (gTCBs)
+                     110             EXTRN   DATA (gSCB)
+                     111             PUBLIC  DecIntNestCnt
+                     112             PUBLIC  IncIntNestCnt
+                     113             PUBLIC  UnlockSchMutex
+                     114             PUBLIC  LockSchMutex
+                     115             PUBLIC  CanSchedule
+                     116             PUBLIC  ScheduleTask
+                     117             PUBLIC  UpdatePriorTskQueue
+                     118             PUBLIC  UpdateTskQueue
+                     119             PUBLIC  _DeregisterPriorTask
+                     120             PUBLIC  _DeregisterTask
+                     121             PUBLIC  GetReadyPriorTsk
+                     122             PUBLIC  GetReadyTsk
+                     123             PUBLIC  _RegisterPriorTask
+A51 MACRO ASSEMBLER  SCHEDULE                                                             09/15/2014 23:51:53 PAGE     3
+
+                     124             PUBLIC  _RegisterTask
+                     125     
+----                 126             RSEG  ?DT?_DeregisterTask?SCHEDULE
+0000                 127     ?_DeregisterTask?BYTE:
+0000                 128         taskNum?446:   DS   1
+0001                 129             ORG  1
+0001                 130             pos?447:   DS   1
+                     131     
+----                 132             RSEG  ?DT?_DeregisterPriorTask?SCHEDULE
+0000                 133     ?_DeregisterPriorTask?BYTE:
+0000                 134         taskNum?548:   DS   1
+0001                 135             ORG  1
+0001                 136       taskFound?549:   DS   1
+0002                 137             pos?550:   DS   1
+                     138     
+----                 139             RSEG  ?DT?GetReadyTsk?SCHEDULE
+0000                 140     ?GetReadyTsk?BYTE:
+0000                 141         taskNum?244:   DS   1
+                     142     
+----                 143             RSEG  ?DT?GetReadyPriorTsk?SCHEDULE
+0000                 144     ?GetReadyPriorTsk?BYTE:
+0000                 145         taskNum?345:   DS   1
+                     146     ; 
+                     147     ; #include <reg52.h>
+                     148     ; #include "../include/system.h"
+                     149     ; #include "../include/macro.h"
+                     150     ; 
+                     151     ; void UpdateTskQueue();
+                     152     ; 
+                     153     ; void UpdatePriorTskQueue();
+                     154     ; 
+                     155     ; int8_t CanSchedule();
+                     156     ; 
+                     157     ; void RegisterTask(uint8_t taskNum)
+                     158     
+----                 159             RSEG  ?PR?_RegisterTask?SCHEDULE
+0000                 160     _RegisterTask:
+                     161             USING   0
+                     162                             ; SOURCE LINE # 12
+                     163     ;---- Variable 'taskNum?040' assigned to Register 'R7' ----
+                     164     ; {
+                     165                             ; SOURCE LINE # 13
+                     166     ;       uint8_t pos;
+                     167     ;       for (pos = 0; pos < MAX_TSK_NUM; pos++)
+                     168                             ; SOURCE LINE # 15
+                     169     ;---- Variable 'pos?041' assigned to Register 'R6' ----
+0000 E4              170             CLR     A
+0001 FE              171             MOV     R6,A
+0002                 172     ?C0001:
+                     173     ;       {
+                     174                             ; SOURCE LINE # 16
+                     175     ;               if (0 == gTskQueue[pos])
+                     176                             ; SOURCE LINE # 17
+0002 7400     F      177             MOV     A,#LOW (gTskQueue)
+0004 2E              178             ADD     A,R6
+0005 F8              179             MOV     R0,A
+0006 E6              180             MOV     A,@R0
+0007 700D            181             JNZ     ?C0003
+                     182     ;               {
+                     183                             ; SOURCE LINE # 18
+                     184     ;                       gTskQueue[pos] = taskNum;
+                     185                             ; SOURCE LINE # 19
+0009 A607            186             MOV     @R0,AR7
+                     187     ;                       gTCBs[taskNum].curTskStat = TSK_READY;
+                     188                             ; SOURCE LINE # 20
+000B EF              189             MOV     A,R7
+A51 MACRO ASSEMBLER  SCHEDULE                                                             09/15/2014 23:51:53 PAGE     4
+
+000C 75F005          190             MOV     B,#05H
+000F A4              191             MUL     AB
+0010 2400     F      192             ADD     A,#LOW (gTCBs+03H)
+0012 F8              193             MOV     R0,A
+0013 7601            194             MOV     @R0,#01H
+                     195     ;                       break;
+                     196                             ; SOURCE LINE # 21
+0015 22              197             RET     
+                     198     ;               }
+                     199                             ; SOURCE LINE # 22
+                     200     ;       }
+                     201                             ; SOURCE LINE # 23
+0016                 202     ?C0003:
+0016 0E              203             INC     R6
+0017 BE05E8          204             CJNE    R6,#05H,?C0001
+                     205     ; }
+                     206                             ; SOURCE LINE # 24
+001A                 207     ?C0005:
+001A 22              208             RET     
+                     209     ; END OF _RegisterTask
+                     210     
+                     211     ; 
+                     212     ; void RegisterPriorTask(uint8_t taskNum)
+                     213     
+----                 214             RSEG  ?PR?_RegisterPriorTask?SCHEDULE
+0000                 215     _RegisterPriorTask:
+                     216             USING   0
+                     217                             ; SOURCE LINE # 26
+                     218     ;---- Variable 'taskNum?142' assigned to Register 'R7' ----
+                     219     ; {
+                     220                             ; SOURCE LINE # 27
+                     221     ;       uint8_t pos;
+                     222     ;       for (pos = 0; pos < MAX_TSK_NUM; pos++)
+                     223                             ; SOURCE LINE # 29
+                     224     ;---- Variable 'pos?143' assigned to Register 'R6' ----
+0000 E4              225             CLR     A
+0001 FE              226             MOV     R6,A
+0002                 227     ?C0006:
+                     228     ;       {
+                     229                             ; SOURCE LINE # 30
+                     230     ;               if (0 == gPriorTskQueue[pos])
+                     231                             ; SOURCE LINE # 31
+0002 7400     F      232             MOV     A,#LOW (gPriorTskQueue)
+0004 2E              233             ADD     A,R6
+0005 F8              234             MOV     R0,A
+0006 E6              235             MOV     A,@R0
+0007 700E            236             JNZ     ?C0008
+                     237     ;               {
+                     238                             ; SOURCE LINE # 32
+                     239     ;                       gPriorTskQueue[pos] = taskNum;
+                     240                             ; SOURCE LINE # 33
+0009 A607            241             MOV     @R0,AR7
+                     242     ;                       gTCBs[taskNum].curTskStat = TSK_READY;
+                     243                             ; SOURCE LINE # 34
+000B EF              244             MOV     A,R7
+000C 75F005          245             MOV     B,#05H
+000F A4              246             MUL     AB
+0010 2400     F      247             ADD     A,#LOW (gTCBs+03H)
+0012 F8              248             MOV     R0,A
+0013 7601            249             MOV     @R0,#01H
+                     250     ;                       break;
+                     251                             ; SOURCE LINE # 35
+0015 8004            252             SJMP    ?C0007
+                     253     ;               }
+                     254                             ; SOURCE LINE # 36
+                     255     ;       }
+A51 MACRO ASSEMBLER  SCHEDULE                                                             09/15/2014 23:51:53 PAGE     5
+
+                     256                             ; SOURCE LINE # 37
+0017                 257     ?C0008:
+0017 0E              258             INC     R6
+0018 BE05E7          259             CJNE    R6,#05H,?C0006
+001B                 260     ?C0007:
+                     261     ; 
+                     262     ;       gSCB.priorityFlag = PRIORITY_ON;
+                     263                             ; SOURCE LINE # 39
+001B 7500FF   F      264             MOV     gSCB+05H,#0FFH
+                     265     ; }
+                     266                             ; SOURCE LINE # 40
+001E 22              267             RET     
+                     268     ; END OF _RegisterPriorTask
+                     269     
+                     270     ; 
+                     271     ; uint8_t GetReadyTsk()
+                     272     
+----                 273             RSEG  ?PR?GetReadyTsk?SCHEDULE
+0000                 274     GetReadyTsk:
+                     275             USING   0
+                     276                             ; SOURCE LINE # 42
+                     277     ; {
+                     278                             ; SOURCE LINE # 43
+                     279     ;       uint8_t taskNum;
+                     280     ; 
+                     281     ;       taskNum = gTskQueue[0];
+                     282                             ; SOURCE LINE # 46
+0000 7800     F      283             MOV     R0,#LOW (gTskQueue)
+0002 E6              284             MOV     A,@R0
+0003 F500     F      285             MOV     taskNum?244,A
+                     286     ; 
+                     287     ;       if (0 != taskNum)
+                     288                             ; SOURCE LINE # 48
+0005 6003            289             JZ      ?C0011
+                     290     ;       {
+                     291                             ; SOURCE LINE # 49
+                     292     ;               UpdateTskQueue();
+                     293                             ; SOURCE LINE # 50
+0007 120000   F      294             LCALL   UpdateTskQueue
+                     295     ;       }
+                     296                             ; SOURCE LINE # 51
+000A                 297     ?C0011:
+                     298     ; 
+                     299     ;       return taskNum; 
+                     300                             ; SOURCE LINE # 53
+000A AF00     F      301             MOV     R7,taskNum?244
+                     302     ; }
+                     303                             ; SOURCE LINE # 54
+000C                 304     ?C0012:
+000C 22              305             RET     
+                     306     ; END OF GetReadyTsk
+                     307     
+                     308     ; 
+                     309     ; uint8_t GetReadyPriorTsk()
+                     310     
+----                 311             RSEG  ?PR?GetReadyPriorTsk?SCHEDULE
+0000                 312     GetReadyPriorTsk:
+                     313             USING   0
+                     314                             ; SOURCE LINE # 56
+                     315     ; {
+                     316                             ; SOURCE LINE # 57
+                     317     ;       uint8_t taskNum;
+                     318     ; 
+                     319     ;       taskNum = gPriorTskQueue[0];
+                     320                             ; SOURCE LINE # 60
+0000 7800     F      321             MOV     R0,#LOW (gPriorTskQueue)
+A51 MACRO ASSEMBLER  SCHEDULE                                                             09/15/2014 23:51:53 PAGE     6
+
+0002 E6              322             MOV     A,@R0
+0003 F500     F      323             MOV     taskNum?345,A
+                     324     ; 
+                     325     ;       if (0 != taskNum)
+                     326                             ; SOURCE LINE # 62
+0005 6003            327             JZ      ?C0013
+                     328     ;       {
+                     329                             ; SOURCE LINE # 63
+                     330     ;               UpdatePriorTskQueue();
+                     331                             ; SOURCE LINE # 64
+0007 120000   F      332             LCALL   UpdatePriorTskQueue
+                     333     ;       }
+                     334                             ; SOURCE LINE # 65
+000A                 335     ?C0013:
+                     336     ; 
+                     337     ;       if (0 == gPriorTskQueue[0])
+                     338                             ; SOURCE LINE # 67
+000A 7800     F      339             MOV     R0,#LOW (gPriorTskQueue)
+000C E6              340             MOV     A,@R0
+000D 7002            341             JNZ     ?C0014
+                     342     ;       {
+                     343                             ; SOURCE LINE # 68
+                     344     ;               gSCB.priorityFlag = PRIORITY_OFF;
+                     345                             ; SOURCE LINE # 69
+000F F500     F      346             MOV     gSCB+05H,A
+                     347     ;       }
+                     348                             ; SOURCE LINE # 70
+0011                 349     ?C0014:
+                     350     ; 
+                     351     ;       return taskNum; 
+                     352                             ; SOURCE LINE # 72
+0011 AF00     F      353             MOV     R7,taskNum?345
+                     354     ; }
+                     355                             ; SOURCE LINE # 73
+0013                 356     ?C0015:
+0013 22              357             RET     
+                     358     ; END OF GetReadyPriorTsk
+                     359     
+                     360     ; 
+                     361     ; void DeregisterTask(uint8_t taskNum)
+                     362     
+----                 363             RSEG  ?PR?_DeregisterTask?SCHEDULE
+0000                 364     _DeregisterTask:
+                     365             USING   0
+                     366                             ; SOURCE LINE # 75
+0000 8F00     F      367             MOV     taskNum?446,R7
+                     368     ; {
+                     369                             ; SOURCE LINE # 76
+                     370     ;       uint8_t pos;
+                     371     ;       for (pos = 0; pos < MAX_TSK_NUM; pos++)
+                     372                             ; SOURCE LINE # 78
+0002 E4              373             CLR     A
+0003 F500     F      374             MOV     pos?447,A
+0005                 375     ?C0016:
+                     376     ;       {
+                     377                             ; SOURCE LINE # 79
+                     378     ;               if (taskNum == gTskQueue[pos])
+                     379                             ; SOURCE LINE # 80
+0005 7400     F      380             MOV     A,#LOW (gTskQueue)
+0007 2500     F      381             ADD     A,pos?447
+0009 F8              382             MOV     R0,A
+000A E500     F      383             MOV     A,taskNum?446
+000C 66              384             XRL     A,@R0
+000D 7004            385             JNZ     ?C0018
+                     386     ;               {
+                     387                             ; SOURCE LINE # 81
+A51 MACRO ASSEMBLER  SCHEDULE                                                             09/15/2014 23:51:53 PAGE     7
+
+                     388     ;                       gTskQueue[pos] = 0;
+                     389                             ; SOURCE LINE # 82
+000F F6              390             MOV     @R0,A
+                     391     ;                       UpdateTskQueue();
+                     392                             ; SOURCE LINE # 83
+0010 020000   F      393             LJMP    UpdateTskQueue
+                     394     ;                       break;
+                     395                             ; SOURCE LINE # 84
+                     396     ;               }
+                     397                             ; SOURCE LINE # 85
+                     398     ;       }
+                     399                             ; SOURCE LINE # 86
+0013                 400     ?C0018:
+0013 0500     F      401             INC     pos?447
+0015 E500     F      402             MOV     A,pos?447
+0017 C3              403             CLR     C
+0018 9405            404             SUBB    A,#05H
+001A 40E9            405             JC      ?C0016
+                     406     ; }
+                     407                             ; SOURCE LINE # 87
+001C                 408     ?C0020:
+001C 22              409             RET     
+                     410     ; END OF _DeregisterTask
+                     411     
+                     412     ; 
+                     413     ; uint8_t DeregisterPriorTask(uint8_t taskNum)
+                     414     
+----                 415             RSEG  ?PR?_DeregisterPriorTask?SCHEDULE
+0000                 416     _DeregisterPriorTask:
+                     417             USING   0
+                     418                             ; SOURCE LINE # 89
+0000 8F00     F      419             MOV     taskNum?548,R7
+                     420     ; {
+                     421                             ; SOURCE LINE # 90
+                     422     ;       uint8_t taskFound = 0;
+                     423                             ; SOURCE LINE # 91
+0002 E4              424             CLR     A
+0003 F500     F      425             MOV     taskFound?549,A
+                     426     ;       uint8_t pos;
+                     427     ;       for (pos = 0; pos < MAX_TSK_NUM; pos++)
+                     428                             ; SOURCE LINE # 93
+0005 F500     F      429             MOV     pos?550,A
+0007                 430     ?C0021:
+                     431     ;       {
+                     432                             ; SOURCE LINE # 94
+                     433     ;               if (taskNum == gPriorTskQueue[pos])
+                     434                             ; SOURCE LINE # 95
+0007 7400     F      435             MOV     A,#LOW (gPriorTskQueue)
+0009 2500     F      436             ADD     A,pos?550
+000B F8              437             MOV     R0,A
+000C E500     F      438             MOV     A,taskNum?548
+000E 66              439             XRL     A,@R0
+000F 7009            440             JNZ     ?C0023
+                     441     ;               {
+                     442                             ; SOURCE LINE # 96
+                     443     ;                       taskFound = 1;
+                     444                             ; SOURCE LINE # 97
+0011 750001   F      445             MOV     taskFound?549,#01H
+                     446     ;                       gPriorTskQueue[pos] = 0;
+                     447                             ; SOURCE LINE # 98
+0014 F6              448             MOV     @R0,A
+                     449     ;                       UpdatePriorTskQueue();
+                     450                             ; SOURCE LINE # 99
+0015 120000   F      451             LCALL   UpdatePriorTskQueue
+                     452     ;                       break;
+                     453                             ; SOURCE LINE # 100
+A51 MACRO ASSEMBLER  SCHEDULE                                                             09/15/2014 23:51:53 PAGE     8
+
+0018 8009            454             SJMP    ?C0022
+                     455     ;               }
+                     456                             ; SOURCE LINE # 101
+                     457     ;       }
+                     458                             ; SOURCE LINE # 102
+001A                 459     ?C0023:
+001A 0500     F      460             INC     pos?550
+001C E500     F      461             MOV     A,pos?550
+001E C3              462             CLR     C
+001F 9405            463             SUBB    A,#05H
+0021 40E4            464             JC      ?C0021
+0023                 465     ?C0022:
+                     466     ; 
+                     467     ;       if (0 == gPriorTskQueue[0])
+                     468                             ; SOURCE LINE # 104
+0023 7800     F      469             MOV     R0,#LOW (gPriorTskQueue)
+0025 E6              470             MOV     A,@R0
+0026 7002            471             JNZ     ?C0025
+                     472     ;       {
+                     473                             ; SOURCE LINE # 105
+                     474     ;               gSCB.priorityFlag = PRIORITY_OFF;
+                     475                             ; SOURCE LINE # 106
+0028 F500     F      476             MOV     gSCB+05H,A
+                     477     ;       }
+                     478                             ; SOURCE LINE # 107
+002A                 479     ?C0025:
+                     480     ; 
+                     481     ;       return taskFound;
+                     482                             ; SOURCE LINE # 109
+002A AF00     F      483             MOV     R7,taskFound?549
+                     484     ; }
+                     485                             ; SOURCE LINE # 110
+002C                 486     ?C0026:
+002C 22              487             RET     
+                     488     ; END OF _DeregisterPriorTask
+                     489     
+                     490     ; 
+                     491     ; void UpdateTskQueue()
+                     492     
+----                 493             RSEG  ?PR?UpdateTskQueue?SCHEDULE
+0000                 494     UpdateTskQueue:
+                     495             USING   0
+                     496                             ; SOURCE LINE # 112
+                     497     ; {
+                     498                             ; SOURCE LINE # 113
+                     499     ;       uint8_t newPos;
+                     500     ;       uint8_t oldPos;
+                     501     ;       for (newPos = 0, oldPos = 0; oldPos < MAX_TSK_NUM; oldPos++)
+                     502                             ; SOURCE LINE # 116
+                     503     ;---- Variable 'newPos?651' assigned to Register 'R7' ----
+0000 E4              504             CLR     A
+0001 FF              505             MOV     R7,A
+                     506     ;---- Variable 'oldPos?652' assigned to Register 'R6' ----
+0002 FE              507             MOV     R6,A
+0003                 508     ?C0027:
+                     509     ;       {
+                     510                             ; SOURCE LINE # 117
+                     511     ;               if (0 != gTskQueue[oldPos])
+                     512                             ; SOURCE LINE # 118
+0003 7400     F      513             MOV     A,#LOW (gTskQueue)
+0005 2E              514             ADD     A,R6
+0006 F8              515             MOV     R0,A
+0007 E6              516             MOV     A,@R0
+0008 600D            517             JZ      ?C0030
+                     518     ;               {
+                     519                             ; SOURCE LINE # 119
+A51 MACRO ASSEMBLER  SCHEDULE                                                             09/15/2014 23:51:53 PAGE     9
+
+                     520     ;                       gPriorTskQueue[newPos] = gPriorTskQueue[oldPos];
+                     521                             ; SOURCE LINE # 120
+000A 7400     F      522             MOV     A,#LOW (gPriorTskQueue)
+000C 2E              523             ADD     A,R6
+000D F8              524             MOV     R0,A
+000E E6              525             MOV     A,@R0
+000F FD              526             MOV     R5,A
+0010 7400     F      527             MOV     A,#LOW (gPriorTskQueue)
+0012 2F              528             ADD     A,R7
+0013 F8              529             MOV     R0,A
+0014 A605            530             MOV     @R0,AR5
+                     531     ;                       newPos++; 
+                     532                             ; SOURCE LINE # 121
+0016 0F              533             INC     R7
+                     534     ;               }
+                     535                             ; SOURCE LINE # 122
+0017                 536     ?C0030:
+                     537     ; 
+                     538     ;               if (MAX_TSK_NUM - 1 == oldPos)
+                     539                             ; SOURCE LINE # 124
+0017 BE0406          540             CJNE    R6,#04H,?C0029
+                     541     ;               {
+                     542                             ; SOURCE LINE # 125
+                     543     ;                       gPriorTskQueue[oldPos] = 0;
+                     544                             ; SOURCE LINE # 126
+001A 7400     F      545             MOV     A,#LOW (gPriorTskQueue)
+001C 2E              546             ADD     A,R6
+001D F8              547             MOV     R0,A
+001E E4              548             CLR     A
+001F F6              549             MOV     @R0,A
+                     550     ;               }
+                     551                             ; SOURCE LINE # 127
+                     552     ;       }
+                     553                             ; SOURCE LINE # 128
+0020                 554     ?C0029:
+0020 0E              555             INC     R6
+0021 BE05DF          556             CJNE    R6,#05H,?C0027
+                     557     ; }
+                     558                             ; SOURCE LINE # 129
+0024                 559     ?C0032:
+0024 22              560             RET     
+                     561     ; END OF UpdateTskQueue
+                     562     
+                     563     ; 
+                     564     ; void UpdatePriorTskQueue()
+                     565     
+----                 566             RSEG  ?PR?UpdatePriorTskQueue?SCHEDULE
+0000                 567     UpdatePriorTskQueue:
+                     568             USING   0
+                     569                             ; SOURCE LINE # 131
+                     570     ; {
+                     571                             ; SOURCE LINE # 132
+                     572     ;       uint8_t newPos;
+                     573     ;       uint8_t oldPos;
+                     574     ;       for (newPos = 0, oldPos = 0; oldPos < MAX_TSK_NUM; oldPos++)
+                     575                             ; SOURCE LINE # 135
+                     576     ;---- Variable 'newPos?753' assigned to Register 'R7' ----
+0000 E4              577             CLR     A
+0001 FF              578             MOV     R7,A
+                     579     ;---- Variable 'oldPos?754' assigned to Register 'R6' ----
+0002 FE              580             MOV     R6,A
+0003                 581     ?C0033:
+                     582     ;       {
+                     583                             ; SOURCE LINE # 136
+                     584     ;               if (0 != gPriorTskQueue[oldPos])
+                     585                             ; SOURCE LINE # 137
+A51 MACRO ASSEMBLER  SCHEDULE                                                             09/15/2014 23:51:53 PAGE    10
+
+0003 7400     F      586             MOV     A,#LOW (gPriorTskQueue)
+0005 2E              587             ADD     A,R6
+0006 F8              588             MOV     R0,A
+0007 E6              589             MOV     A,@R0
+0008 FD              590             MOV     R5,A
+0009 6007            591             JZ      ?C0036
+                     592     ;               {
+                     593                             ; SOURCE LINE # 138
+                     594     ;                       gPriorTskQueue[newPos] = gPriorTskQueue[oldPos];
+                     595                             ; SOURCE LINE # 139
+000B 7400     F      596             MOV     A,#LOW (gPriorTskQueue)
+000D 2F              597             ADD     A,R7
+000E F8              598             MOV     R0,A
+000F A605            599             MOV     @R0,AR5
+                     600     ;                       newPos++; 
+                     601                             ; SOURCE LINE # 140
+0011 0F              602             INC     R7
+                     603     ;               }
+                     604                             ; SOURCE LINE # 141
+0012                 605     ?C0036:
+                     606     ; 
+                     607     ;               if (MAX_TSK_NUM - 1 == oldPos)
+                     608                             ; SOURCE LINE # 143
+0012 BE0406          609             CJNE    R6,#04H,?C0035
+                     610     ;               {
+                     611                             ; SOURCE LINE # 144
+                     612     ;                       gPriorTskQueue[oldPos] = 0;
+                     613                             ; SOURCE LINE # 145
+0015 7400     F      614             MOV     A,#LOW (gPriorTskQueue)
+0017 2E              615             ADD     A,R6
+0018 F8              616             MOV     R0,A
+0019 E4              617             CLR     A
+001A F6              618             MOV     @R0,A
+                     619     ;               }
+                     620                             ; SOURCE LINE # 146
+                     621     ;       }
+                     622                             ; SOURCE LINE # 147
+001B                 623     ?C0035:
+001B 0E              624             INC     R6
+001C BE05E4          625             CJNE    R6,#05H,?C0033
+                     626     ; }
+                     627                             ; SOURCE LINE # 148
+001F                 628     ?C0038:
+001F 22              629             RET     
+                     630     ; END OF UpdatePriorTskQueue
+                     631     
+                     632     ; 
+                     633     ; void ScheduleTask()
+                     634     
+----                 635             RSEG  ?PR?ScheduleTask?SCHEDULE
+0000                 636     ScheduleTask:
+                     637             USING   0
+                     638                             ; SOURCE LINE # 150
+                     639     ; {
+                     640                             ; SOURCE LINE # 151
+                     641     ;       EA = INT_OFF;
+                     642                             ; SOURCE LINE # 152
+0000 C2AF            643             CLR     EA
+                     644     ; 
+                     645     ;       if (!CanSchedule())
+                     646                             ; SOURCE LINE # 154
+0002 120000   F      647             LCALL   CanSchedule
+0005 EF              648             MOV     A,R7
+0006 7003            649             JNZ     ?C0039
+                     650     ;       {
+                     651                             ; SOURCE LINE # 155
+A51 MACRO ASSEMBLER  SCHEDULE                                                             09/15/2014 23:51:53 PAGE    11
+
+                     652     ;               EA = INT_ON;
+                     653                             ; SOURCE LINE # 156
+0008 D2AF            654             SETB    EA
+000A 22              655             RET     
+                     656     ;               return;
+                     657     ;       }
+                     658                             ; SOURCE LINE # 158
+000B                 659     ?C0039:
+                     660     ; 
+                     661     ;       if (0 == gSCB.nextTskNum)
+                     662                             ; SOURCE LINE # 160
+000B E500     F      663             MOV     A,gSCB+01H
+000D 7011            664             JNZ     ?C0041
+                     665     ;       {
+                     666                             ; SOURCE LINE # 161
+                     667     ;               if (PRIORITY_ON == gSCB.priorityFlag)
+                     668                             ; SOURCE LINE # 162
+000F E500     F      669             MOV     A,gSCB+05H
+0011 B4FF07          670             CJNE    A,#0FFH,?C0042
+                     671     ;               {
+                     672                             ; SOURCE LINE # 163
+                     673     ;                       gSCB.nextTskNum = GetReadyPriorTsk();
+                     674                             ; SOURCE LINE # 164
+0014 120000   F      675             LCALL   GetReadyPriorTsk
+0017 8F00     F      676             MOV     gSCB+01H,R7
+                     677     ;               }
+                     678                             ; SOURCE LINE # 165
+0019 8005            679             SJMP    ?C0041
+001B                 680     ?C0042:
+                     681     ;               else
+                     682     ;               {
+                     683                             ; SOURCE LINE # 167
+                     684     ;                       gSCB.nextTskNum = GetReadyTsk();
+                     685                             ; SOURCE LINE # 168
+001B 120000   F      686             LCALL   GetReadyTsk
+001E 8F00     F      687             MOV     gSCB+01H,R7
+                     688     ;               }
+                     689                             ; SOURCE LINE # 169
+                     690     ;       }
+                     691                             ; SOURCE LINE # 170
+0020                 692     ?C0041:
+                     693     ; 
+                     694     ;       gSCB.timeSlice = SYS_TIMESLICE;
+                     695                             ; SOURCE LINE # 172
+0020 750005   F      696             MOV     gSCB+02H,#05H
+                     697     ; 
+                     698     ;       if (gSCB.curTskNum != gSCB.nextTskNum)
+                     699                             ; SOURCE LINE # 174
+0023 E500     F      700             MOV     A,gSCB
+0025 6500     F      701             XRL     A,gSCB+01H
+0027 6041            702             JZ      ?C0044
+                     703     ;       {
+                     704                             ; SOURCE LINE # 175
+                     705     ;               /*push current task data into task stack*/
+                     706     ;               __asm PUSH ACC
+0029 C0E0            707              PUSH ACC
+                     708     ;               __asm PUSH B
+002B C0F0            709              PUSH B
+                     710     ;               __asm PUSH PSW
+002D C0D0            711              PUSH PSW
+                     712     ;               __asm PUSH AR0
+002F C000            713              PUSH AR0
+                     714     ;               __asm PUSH AR1
+0031 C001            715              PUSH AR1
+                     716     ;               //__asm PUSH AR2
+                     717     ;               //__asm PUSH AR3
+A51 MACRO ASSEMBLER  SCHEDULE                                                             09/15/2014 23:51:53 PAGE    12
+
+                     718     ;               __asm PUSH AR4
+0033 C004            719              PUSH AR4
+                     720     ;               __asm PUSH AR5
+0035 C005            721              PUSH AR5
+                     722     ;               __asm PUSH AR6
+0037 C006            723              PUSH AR6
+                     724     ;               __asm PUSH AR7
+0039 C007            725              PUSH AR7
+                     726     ; 
+                     727     ;               gTCBs[gSCB.curTskNum].taskSP = SP;
+                     728                             ; SOURCE LINE # 189
+003B E500     F      729             MOV     A,gSCB
+003D 75F005          730             MOV     B,#05H
+0040 A4              731             MUL     AB
+0041 2400     F      732             ADD     A,#LOW (gTCBs+02H)
+0043 F8              733             MOV     R0,A
+0044 A681            734             MOV     @R0,SP
+                     735     ;               gSCB.curTskNum = gSCB.nextTskNum;
+                     736                             ; SOURCE LINE # 190
+0046 850000   F      737             MOV     gSCB,gSCB+01H
+                     738     ;               gSCB.nextTskNum = 0;
+                     739                             ; SOURCE LINE # 191
+0049 E4              740             CLR     A
+004A F500     F      741             MOV     gSCB+01H,A
+                     742     ;               SP = gTCBs[gSCB.curTskNum].taskSP;
+                     743                             ; SOURCE LINE # 192
+004C E500     F      744             MOV     A,gSCB
+004E 75F005          745             MOV     B,#05H
+0051 A4              746             MUL     AB
+0052 2400     F      747             ADD     A,#LOW (gTCBs+02H)
+0054 F8              748             MOV     R0,A
+0055 E6              749             MOV     A,@R0
+0056 F581            750             MOV     SP,A
+                     751     ; 
+                     752     ;               /*pop new task data from task stack*/
+                     753     ;               __asm POP AR7
+0058 D007            754              POP AR7
+                     755     ;               __asm POP AR6
+005A D006            756              POP AR6
+                     757     ;               __asm POP AR5
+005C D005            758              POP AR5
+                     759     ;               __asm POP AR4
+005E D004            760              POP AR4
+                     761     ;               //__asm POP AR3
+                     762     ;               //__asm POP AR2
+                     763     ;               __asm POP AR1
+0060 D001            764              POP AR1
+                     765     ;               __asm POP AR0
+0062 D000            766              POP AR0
+                     767     ;               __asm POP PSW
+0064 D0D0            768              POP PSW
+                     769     ;               __asm POP B
+0066 D0F0            770              POP B
+                     771     ;               __asm POP ACC
+0068 D0E0            772              POP ACC
+                     773     ;       }
+                     774                             ; SOURCE LINE # 206
+006A                 775     ?C0044:
+                     776     ; 
+                     777     ;       EA = INT_ON;
+                     778                             ; SOURCE LINE # 208
+006A D2AF            779             SETB    EA
+                     780     ; }
+                     781                             ; SOURCE LINE # 209
+006C                 782     ?C0040:
+006C 22              783             RET     
+A51 MACRO ASSEMBLER  SCHEDULE                                                             09/15/2014 23:51:53 PAGE    13
+
+                     784     ; END OF ScheduleTask
+                     785     
+                     786     ; 
+                     787     ; int8_t CanSchedule()
+                     788     
+----                 789             RSEG  ?PR?CanSchedule?SCHEDULE
+0000                 790     CanSchedule:
+                     791             USING   0
+                     792                             ; SOURCE LINE # 211
+                     793     ; {
+                     794                             ; SOURCE LINE # 212
+                     795     ;       if (SYS_ON != gSCB.sysRunningFlag)
+                     796                             ; SOURCE LINE # 213
+0000 E500     F      797             MOV     A,gSCB+07H
+0002 F4              798             CPL     A
+0003 6003            799             JZ      ?C0045
+                     800     ;       {
+                     801                             ; SOURCE LINE # 214
+                     802     ;               return 0;
+                     803                             ; SOURCE LINE # 215
+0005 7F00            804             MOV     R7,#00H
+0007 22              805             RET     
+                     806     ;       }
+                     807                             ; SOURCE LINE # 216
+0008                 808     ?C0045:
+                     809     ;       
+                     810     ;       if (SCHMUTEX_ON == gSCB.schMutex)
+                     811                             ; SOURCE LINE # 218
+0008 E500     F      812             MOV     A,gSCB+03H
+000A B40103          813             CJNE    A,#01H,?C0047
+                     814     ;       {
+                     815                             ; SOURCE LINE # 219
+                     816     ;               return 0;
+                     817                             ; SOURCE LINE # 220
+000D 7F00            818             MOV     R7,#00H
+000F 22              819             RET     
+                     820     ;       }
+                     821                             ; SOURCE LINE # 221
+0010                 822     ?C0047:
+                     823     ; 
+                     824     ;       if (0 != gSCB.intNestCnt)
+                     825                             ; SOURCE LINE # 223
+0010 E500     F      826             MOV     A,gSCB+04H
+0012 6003            827             JZ      ?C0048
+                     828     ;       {
+                     829                             ; SOURCE LINE # 224
+                     830     ;               return 0;
+                     831                             ; SOURCE LINE # 225
+0014 7F00            832             MOV     R7,#00H
+0016 22              833             RET     
+                     834     ;       }
+                     835                             ; SOURCE LINE # 226
+0017                 836     ?C0048:
+                     837     ; 
+                     838     ;       if (SYS_SERVICE == gSCB.sysMode)
+                     839                             ; SOURCE LINE # 228
+0017 E500     F      840             MOV     A,gSCB+06H
+0019 B40403          841             CJNE    A,#04H,?C0049
+                     842     ;       {
+                     843                             ; SOURCE LINE # 229
+                     844     ;               return 0;
+                     845                             ; SOURCE LINE # 230
+001C 7F00            846             MOV     R7,#00H
+001E 22              847             RET     
+                     848     ;       }
+                     849                             ; SOURCE LINE # 231
+A51 MACRO ASSEMBLER  SCHEDULE                                                             09/15/2014 23:51:53 PAGE    14
+
+001F                 850     ?C0049:
+                     851     ; 
+                     852     ;       if (0 != gSCB.timeSlice)
+                     853                             ; SOURCE LINE # 233
+001F E500     F      854             MOV     A,gSCB+02H
+0021 6003            855             JZ      ?C0050
+                     856     ;       {
+                     857                             ; SOURCE LINE # 234
+                     858     ;               return 0;
+                     859                             ; SOURCE LINE # 235
+0023 7F00            860             MOV     R7,#00H
+0025 22              861             RET     
+                     862     ;       }
+                     863                             ; SOURCE LINE # 236
+0026                 864     ?C0050:
+                     865     ; 
+                     866     ;       return 1;
+                     867                             ; SOURCE LINE # 238
+0026 7F01            868             MOV     R7,#01H
+                     869     ; }
+                     870                             ; SOURCE LINE # 239
+0028                 871     ?C0046:
+0028 22              872             RET     
+                     873     ; END OF CanSchedule
+                     874     
+                     875     ; 
+                     876     ; void LockSchMutex()
+                     877     
+----                 878             RSEG  ?PR?LockSchMutex?SCHEDULE
+0000                 879     LockSchMutex:
+                     880                             ; SOURCE LINE # 241
+                     881     ; {
+                     882                             ; SOURCE LINE # 242
+                     883     ;       EA = INT_OFF;
+                     884                             ; SOURCE LINE # 243
+0000 C2AF            885             CLR     EA
+                     886     ;       gSCB.schMutex = SCHMUTEX_ON;
+                     887                             ; SOURCE LINE # 244
+0002 750001   F      888             MOV     gSCB+03H,#01H
+                     889     ;       EA = INT_ON;
+                     890                             ; SOURCE LINE # 245
+0005 D2AF            891             SETB    EA
+                     892     ; }
+                     893                             ; SOURCE LINE # 246
+0007 22              894             RET     
+                     895     ; END OF LockSchMutex
+                     896     
+                     897     ; 
+                     898     ; void UnlockSchMutex()
+                     899     
+----                 900             RSEG  ?PR?UnlockSchMutex?SCHEDULE
+0000                 901     UnlockSchMutex:
+                     902                             ; SOURCE LINE # 248
+                     903     ; {
+                     904                             ; SOURCE LINE # 249
+                     905     ;       EA = INT_OFF;
+                     906                             ; SOURCE LINE # 250
+0000 C2AF            907             CLR     EA
+                     908     ;       gSCB.schMutex = SCHMUTEX_OFF;
+                     909                             ; SOURCE LINE # 251
+0002 E4              910             CLR     A
+0003 F500     F      911             MOV     gSCB+03H,A
+                     912     ;       EA = INT_ON;
+                     913                             ; SOURCE LINE # 252
+0005 D2AF            914             SETB    EA
+                     915     ; }
+A51 MACRO ASSEMBLER  SCHEDULE                                                             09/15/2014 23:51:53 PAGE    15
+
+                     916                             ; SOURCE LINE # 253
+0007 22              917             RET     
+                     918     ; END OF UnlockSchMutex
+                     919     
+                     920     ; 
+                     921     ; void IncIntNestCnt()
+                     922     
+----                 923             RSEG  ?PR?IncIntNestCnt?SCHEDULE
+0000                 924     IncIntNestCnt:
+                     925                             ; SOURCE LINE # 255
+                     926     ; {
+                     927                             ; SOURCE LINE # 256
+                     928     ;       EA = INT_OFF;
+                     929                             ; SOURCE LINE # 257
+0000 C2AF            930             CLR     EA
+                     931     ;       if (gSCB.intNestCnt < MAX_INTNEST_CNT)
+                     932                             ; SOURCE LINE # 258
+0002 E500     F      933             MOV     A,gSCB+04H
+0004 C3              934             CLR     C
+0005 9405            935             SUBB    A,#05H
+0007 5002            936             JNC     ?C0053
+                     937     ;       {
+                     938                             ; SOURCE LINE # 259
+                     939     ;               gSCB.intNestCnt++;
+                     940                             ; SOURCE LINE # 260
+0009 0500     F      941             INC     gSCB+04H
+                     942     ;       }
+                     943                             ; SOURCE LINE # 261
+000B                 944     ?C0053:
+                     945     ;       EA = INT_ON;
+                     946                             ; SOURCE LINE # 262
+000B D2AF            947             SETB    EA
+                     948     ; }
+                     949                             ; SOURCE LINE # 263
+000D 22              950             RET     
+                     951     ; END OF IncIntNestCnt
+                     952     
+                     953     ; 
+                     954     ; void DecIntNestCnt()
+                     955     
+----                 956             RSEG  ?PR?DecIntNestCnt?SCHEDULE
+0000                 957     DecIntNestCnt:
+                     958                             ; SOURCE LINE # 265
+                     959     ; {
+                     960                             ; SOURCE LINE # 266
+                     961     ;       EA = INT_OFF;
+                     962                             ; SOURCE LINE # 267
+0000 C2AF            963             CLR     EA
+                     964     ;       if (gSCB.intNestCnt > 0)
+                     965                             ; SOURCE LINE # 268
+0002 E500     F      966             MOV     A,gSCB+04H
+0004 D3              967             SETB    C
+0005 9400            968             SUBB    A,#00H
+0007 4002            969             JC      ?C0055
+                     970     ;       {
+                     971                             ; SOURCE LINE # 269
+                     972     ;               gSCB.intNestCnt--;
+                     973                             ; SOURCE LINE # 270
+0009 1500     F      974             DEC     gSCB+04H
+                     975     ;       }
+                     976                             ; SOURCE LINE # 271
+000B                 977     ?C0055:
+                     978     ;       EA = INT_ON;
+                     979                             ; SOURCE LINE # 272
+000B D2AF            980             SETB    EA
+                     981     ; }
+A51 MACRO ASSEMBLER  SCHEDULE                                                             09/15/2014 23:51:53 PAGE    16
+
+                     982                             ; SOURCE LINE # 273
+000D 22              983             RET     
+                     984     ; END OF DecIntNestCnt
+                     985     
+                     986             END
+A51 MACRO ASSEMBLER  SCHEDULE                                                             09/15/2014 23:51:53 PAGE    17
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E                            T Y P E  V A L U E   ATTRIBUTES
+
+?C0001. . . . . . . . . . . . . .  C ADDR   0002H   R   SEG=?PR?_REGISTERTASK?SCHEDULE
+?C0003. . . . . . . . . . . . . .  C ADDR   0016H   R   SEG=?PR?_REGISTERTASK?SCHEDULE
+?C0005. . . . . . . . . . . . . .  C ADDR   001AH   R   SEG=?PR?_REGISTERTASK?SCHEDULE
+?C0006. . . . . . . . . . . . . .  C ADDR   0002H   R   SEG=?PR?_REGISTERPRIORTASK?SCHEDULE
+?C0007. . . . . . . . . . . . . .  C ADDR   001BH   R   SEG=?PR?_REGISTERPRIORTASK?SCHEDULE
+?C0008. . . . . . . . . . . . . .  C ADDR   0017H   R   SEG=?PR?_REGISTERPRIORTASK?SCHEDULE
+?C0011. . . . . . . . . . . . . .  C ADDR   000AH   R   SEG=?PR?GETREADYTSK?SCHEDULE
+?C0012. . . . . . . . . . . . . .  C ADDR   000CH   R   SEG=?PR?GETREADYTSK?SCHEDULE
+?C0013. . . . . . . . . . . . . .  C ADDR   000AH   R   SEG=?PR?GETREADYPRIORTSK?SCHEDULE
+?C0014. . . . . . . . . . . . . .  C ADDR   0011H   R   SEG=?PR?GETREADYPRIORTSK?SCHEDULE
+?C0015. . . . . . . . . . . . . .  C ADDR   0013H   R   SEG=?PR?GETREADYPRIORTSK?SCHEDULE
+?C0016. . . . . . . . . . . . . .  C ADDR   0005H   R   SEG=?PR?_DEREGISTERTASK?SCHEDULE
+?C0018. . . . . . . . . . . . . .  C ADDR   0013H   R   SEG=?PR?_DEREGISTERTASK?SCHEDULE
+?C0020. . . . . . . . . . . . . .  C ADDR   001CH   R   SEG=?PR?_DEREGISTERTASK?SCHEDULE
+?C0021. . . . . . . . . . . . . .  C ADDR   0007H   R   SEG=?PR?_DEREGISTERPRIORTASK?SCHEDULE
+?C0022. . . . . . . . . . . . . .  C ADDR   0023H   R   SEG=?PR?_DEREGISTERPRIORTASK?SCHEDULE
+?C0023. . . . . . . . . . . . . .  C ADDR   001AH   R   SEG=?PR?_DEREGISTERPRIORTASK?SCHEDULE
+?C0025. . . . . . . . . . . . . .  C ADDR   002AH   R   SEG=?PR?_DEREGISTERPRIORTASK?SCHEDULE
+?C0026. . . . . . . . . . . . . .  C ADDR   002CH   R   SEG=?PR?_DEREGISTERPRIORTASK?SCHEDULE
+?C0027. . . . . . . . . . . . . .  C ADDR   0003H   R   SEG=?PR?UPDATETSKQUEUE?SCHEDULE
+?C0029. . . . . . . . . . . . . .  C ADDR   0020H   R   SEG=?PR?UPDATETSKQUEUE?SCHEDULE
+?C0030. . . . . . . . . . . . . .  C ADDR   0017H   R   SEG=?PR?UPDATETSKQUEUE?SCHEDULE
+?C0032. . . . . . . . . . . . . .  C ADDR   0024H   R   SEG=?PR?UPDATETSKQUEUE?SCHEDULE
+?C0033. . . . . . . . . . . . . .  C ADDR   0003H   R   SEG=?PR?UPDATEPRIORTSKQUEUE?SCHEDULE
+?C0035. . . . . . . . . . . . . .  C ADDR   001BH   R   SEG=?PR?UPDATEPRIORTSKQUEUE?SCHEDULE
+?C0036. . . . . . . . . . . . . .  C ADDR   0012H   R   SEG=?PR?UPDATEPRIORTSKQUEUE?SCHEDULE
+?C0038. . . . . . . . . . . . . .  C ADDR   001FH   R   SEG=?PR?UPDATEPRIORTSKQUEUE?SCHEDULE
+?C0039. . . . . . . . . . . . . .  C ADDR   000BH   R   SEG=?PR?SCHEDULETASK?SCHEDULE
+?C0040. . . . . . . . . . . . . .  C ADDR   006CH   R   SEG=?PR?SCHEDULETASK?SCHEDULE
+?C0041. . . . . . . . . . . . . .  C ADDR   0020H   R   SEG=?PR?SCHEDULETASK?SCHEDULE
+?C0042. . . . . . . . . . . . . .  C ADDR   001BH   R   SEG=?PR?SCHEDULETASK?SCHEDULE
+?C0044. . . . . . . . . . . . . .  C ADDR   006AH   R   SEG=?PR?SCHEDULETASK?SCHEDULE
+?C0045. . . . . . . . . . . . . .  C ADDR   0008H   R   SEG=?PR?CANSCHEDULE?SCHEDULE
+?C0046. . . . . . . . . . . . . .  C ADDR   0028H   R   SEG=?PR?CANSCHEDULE?SCHEDULE
+?C0047. . . . . . . . . . . . . .  C ADDR   0010H   R   SEG=?PR?CANSCHEDULE?SCHEDULE
+?C0048. . . . . . . . . . . . . .  C ADDR   0017H   R   SEG=?PR?CANSCHEDULE?SCHEDULE
+?C0049. . . . . . . . . . . . . .  C ADDR   001FH   R   SEG=?PR?CANSCHEDULE?SCHEDULE
+?C0050. . . . . . . . . . . . . .  C ADDR   0026H   R   SEG=?PR?CANSCHEDULE?SCHEDULE
+?C0053. . . . . . . . . . . . . .  C ADDR   000BH   R   SEG=?PR?INCINTNESTCNT?SCHEDULE
+?C0055. . . . . . . . . . . . . .  C ADDR   000BH   R   SEG=?PR?DECINTNESTCNT?SCHEDULE
+?DT?GETREADYPRIORTSK?SCHEDULE . .  D SEG    0001H       REL=UNIT
+?DT?GETREADYTSK?SCHEDULE. . . . .  D SEG    0001H       REL=UNIT
+?DT?_DEREGISTERPRIORTASK?SCHEDULE  D SEG    0003H       REL=UNIT
+?DT?_DEREGISTERTASK?SCHEDULE. . .  D SEG    0002H       REL=UNIT
+?GETREADYPRIORTSK?BYTE. . . . . .  D ADDR   0000H   R   SEG=?DT?GETREADYPRIORTSK?SCHEDULE
+?GETREADYTSK?BYTE . . . . . . . .  D ADDR   0000H   R   SEG=?DT?GETREADYTSK?SCHEDULE
+?PR?CANSCHEDULE?SCHEDULE. . . . .  C SEG    0029H       REL=UNIT
+?PR?DECINTNESTCNT?SCHEDULE. . . .  C SEG    000EH       REL=UNIT
+?PR?GETREADYPRIORTSK?SCHEDULE . .  C SEG    0014H       REL=UNIT
+?PR?GETREADYTSK?SCHEDULE. . . . .  C SEG    000DH       REL=UNIT
+?PR?INCINTNESTCNT?SCHEDULE. . . .  C SEG    000EH       REL=UNIT
+?PR?LOCKSCHMUTEX?SCHEDULE . . . .  C SEG    0008H       REL=UNIT
+?PR?SCHEDULETASK?SCHEDULE . . . .  C SEG    006DH       REL=UNIT
+?PR?UNLOCKSCHMUTEX?SCHEDULE . . .  C SEG    0008H       REL=UNIT
+?PR?UPDATEPRIORTSKQUEUE?SCHEDULE.  C SEG    0020H       REL=UNIT
+?PR?UPDATETSKQUEUE?SCHEDULE . . .  C SEG    0025H       REL=UNIT
+?PR?_DEREGISTERPRIORTASK?SCHEDULE  C SEG    002DH       REL=UNIT
+?PR?_DEREGISTERTASK?SCHEDULE. . .  C SEG    001DH       REL=UNIT
+?PR?_REGISTERPRIORTASK?SCHEDULE .  C SEG    001FH       REL=UNIT
+?PR?_REGISTERTASK?SCHEDULE. . . .  C SEG    001BH       REL=UNIT
+A51 MACRO ASSEMBLER  SCHEDULE                                                             09/15/2014 23:51:53 PAGE    18
+
+?_DEREGISTERPRIORTASK?BYTE. . . .  D ADDR   0000H   R   SEG=?DT?_DEREGISTERPRIORTASK?SCHEDULE
+?_DEREGISTERTASK?BYTE . . . . . .  D ADDR   0000H   R   SEG=?DT?_DEREGISTERTASK?SCHEDULE
+AC. . . . . . . . . . . . . . . .  B ADDR   00D0H.6 A   
+ACC . . . . . . . . . . . . . . .  D ADDR   00E0H   A   
+AR0 . . . . . . . . . . . . . . .  D ADDR   0000H   A   
+AR1 . . . . . . . . . . . . . . .  D ADDR   0001H   A   
+AR4 . . . . . . . . . . . . . . .  D ADDR   0004H   A   
+AR5 . . . . . . . . . . . . . . .  D ADDR   0005H   A   
+AR6 . . . . . . . . . . . . . . .  D ADDR   0006H   A   
+AR7 . . . . . . . . . . . . . . .  D ADDR   0007H   A   
+B . . . . . . . . . . . . . . . .  D ADDR   00F0H   A   
+CANSCHEDULE . . . . . . . . . . .  C ADDR   0000H   R   SEG=?PR?CANSCHEDULE?SCHEDULE
+CP_RL2. . . . . . . . . . . . . .  B ADDR   00C8H.0 A   
+CY. . . . . . . . . . . . . . . .  B ADDR   00D0H.7 A   
+C_T2. . . . . . . . . . . . . . .  B ADDR   00C8H.1 A   
+DECINTNESTCNT . . . . . . . . . .  C ADDR   0000H   R   SEG=?PR?DECINTNESTCNT?SCHEDULE
+DPH . . . . . . . . . . . . . . .  D ADDR   0083H   A   
+DPL . . . . . . . . . . . . . . .  D ADDR   0082H   A   
+EA. . . . . . . . . . . . . . . .  B ADDR   00A8H.7 A   
+ES. . . . . . . . . . . . . . . .  B ADDR   00A8H.4 A   
+ET0 . . . . . . . . . . . . . . .  B ADDR   00A8H.1 A   
+ET1 . . . . . . . . . . . . . . .  B ADDR   00A8H.3 A   
+ET2 . . . . . . . . . . . . . . .  B ADDR   00A8H.5 A   
+EX0 . . . . . . . . . . . . . . .  B ADDR   00A8H.0 A   
+EX1 . . . . . . . . . . . . . . .  B ADDR   00A8H.2 A   
+EXEN2 . . . . . . . . . . . . . .  B ADDR   00C8H.3 A   
+EXF2. . . . . . . . . . . . . . .  B ADDR   00C8H.6 A   
+F0. . . . . . . . . . . . . . . .  B ADDR   00D0H.5 A   
+GETREADYPRIORTSK. . . . . . . . .  C ADDR   0000H   R   SEG=?PR?GETREADYPRIORTSK?SCHEDULE
+GETREADYTSK . . . . . . . . . . .  C ADDR   0000H   R   SEG=?PR?GETREADYTSK?SCHEDULE
+GPRIORTSKQUEUE. . . . . . . . . .  I ADDR   -----       EXT
+GSCB. . . . . . . . . . . . . . .  D ADDR   -----       EXT
+GTCBS . . . . . . . . . . . . . .  I ADDR   -----       EXT
+GTSKQUEUE . . . . . . . . . . . .  I ADDR   -----       EXT
+IE. . . . . . . . . . . . . . . .  D ADDR   00A8H   A   
+IE0 . . . . . . . . . . . . . . .  B ADDR   0088H.1 A   
+IE1 . . . . . . . . . . . . . . .  B ADDR   0088H.3 A   
+INCINTNESTCNT . . . . . . . . . .  C ADDR   0000H   R   SEG=?PR?INCINTNESTCNT?SCHEDULE
+INT0. . . . . . . . . . . . . . .  B ADDR   00B0H.2 A   
+INT1. . . . . . . . . . . . . . .  B ADDR   00B0H.3 A   
+IP. . . . . . . . . . . . . . . .  D ADDR   00B8H   A   
+IT0 . . . . . . . . . . . . . . .  B ADDR   0088H.0 A   
+IT1 . . . . . . . . . . . . . . .  B ADDR   0088H.2 A   
+LOCKSCHMUTEX. . . . . . . . . . .  C ADDR   0000H   R   SEG=?PR?LOCKSCHMUTEX?SCHEDULE
+OV. . . . . . . . . . . . . . . .  B ADDR   00D0H.2 A   
+P . . . . . . . . . . . . . . . .  B ADDR   00D0H.0 A   
+P0. . . . . . . . . . . . . . . .  D ADDR   0080H   A   
+P1. . . . . . . . . . . . . . . .  D ADDR   0090H   A   
+P2. . . . . . . . . . . . . . . .  D ADDR   00A0H   A   
+P3. . . . . . . . . . . . . . . .  D ADDR   00B0H   A   
+PCON. . . . . . . . . . . . . . .  D ADDR   0087H   A   
+POS?447 . . . . . . . . . . . . .  D ADDR   0001H   R   SEG=?DT?_DEREGISTERTASK?SCHEDULE
+POS?550 . . . . . . . . . . . . .  D ADDR   0002H   R   SEG=?DT?_DEREGISTERPRIORTASK?SCHEDULE
+PS. . . . . . . . . . . . . . . .  B ADDR   00B8H.4 A   
+PSW . . . . . . . . . . . . . . .  D ADDR   00D0H   A   
+PT0 . . . . . . . . . . . . . . .  B ADDR   00B8H.1 A   
+PT1 . . . . . . . . . . . . . . .  B ADDR   00B8H.3 A   
+PT2 . . . . . . . . . . . . . . .  B ADDR   00B8H.5 A   
+PX0 . . . . . . . . . . . . . . .  B ADDR   00B8H.0 A   
+PX1 . . . . . . . . . . . . . . .  B ADDR   00B8H.2 A   
+RB8 . . . . . . . . . . . . . . .  B ADDR   0098H.2 A   
+RCAP2H. . . . . . . . . . . . . .  D ADDR   00CBH   A   
+RCAP2L. . . . . . . . . . . . . .  D ADDR   00CAH   A   
+RCLK. . . . . . . . . . . . . . .  B ADDR   00C8H.5 A   
+RD. . . . . . . . . . . . . . . .  B ADDR   00B0H.7 A   
+REN . . . . . . . . . . . . . . .  B ADDR   0098H.4 A   
+A51 MACRO ASSEMBLER  SCHEDULE                                                             09/15/2014 23:51:53 PAGE    19
+
+RI. . . . . . . . . . . . . . . .  B ADDR   0098H.0 A   
+RS0 . . . . . . . . . . . . . . .  B ADDR   00D0H.3 A   
+RS1 . . . . . . . . . . . . . . .  B ADDR   00D0H.4 A   
+RXD . . . . . . . . . . . . . . .  B ADDR   00B0H.0 A   
+SBUF. . . . . . . . . . . . . . .  D ADDR   0099H   A   
+SCHEDULE. . . . . . . . . . . . .  N NUMB   -----       
+SCHEDULETASK. . . . . . . . . . .  C ADDR   0000H   R   SEG=?PR?SCHEDULETASK?SCHEDULE
+SCON. . . . . . . . . . . . . . .  D ADDR   0098H   A   
+SM0 . . . . . . . . . . . . . . .  B ADDR   0098H.7 A   
+SM1 . . . . . . . . . . . . . . .  B ADDR   0098H.6 A   
+SM2 . . . . . . . . . . . . . . .  B ADDR   0098H.5 A   
+SP. . . . . . . . . . . . . . . .  D ADDR   0081H   A   
+T0. . . . . . . . . . . . . . . .  B ADDR   00B0H.4 A   
+T1. . . . . . . . . . . . . . . .  B ADDR   00B0H.5 A   
+T2. . . . . . . . . . . . . . . .  B ADDR   0090H.0 A   
+T2CON . . . . . . . . . . . . . .  D ADDR   00C8H   A   
+T2EX. . . . . . . . . . . . . . .  B ADDR   0090H.1 A   
+TASKFOUND?549 . . . . . . . . . .  D ADDR   0001H   R   SEG=?DT?_DEREGISTERPRIORTASK?SCHEDULE
+TASKNUM?244 . . . . . . . . . . .  D ADDR   0000H   R   SEG=?DT?GETREADYTSK?SCHEDULE
+TASKNUM?345 . . . . . . . . . . .  D ADDR   0000H   R   SEG=?DT?GETREADYPRIORTSK?SCHEDULE
+TASKNUM?446 . . . . . . . . . . .  D ADDR   0000H   R   SEG=?DT?_DEREGISTERTASK?SCHEDULE
+TASKNUM?548 . . . . . . . . . . .  D ADDR   0000H   R   SEG=?DT?_DEREGISTERPRIORTASK?SCHEDULE
+TB8 . . . . . . . . . . . . . . .  B ADDR   0098H.3 A   
+TCLK. . . . . . . . . . . . . . .  B ADDR   00C8H.4 A   
+TCON. . . . . . . . . . . . . . .  D ADDR   0088H   A   
+TF0 . . . . . . . . . . . . . . .  B ADDR   0088H.5 A   
+TF1 . . . . . . . . . . . . . . .  B ADDR   0088H.7 A   
+TF2 . . . . . . . . . . . . . . .  B ADDR   00C8H.7 A   
+TH0 . . . . . . . . . . . . . . .  D ADDR   008CH   A   
+TH1 . . . . . . . . . . . . . . .  D ADDR   008DH   A   
+TH2 . . . . . . . . . . . . . . .  D ADDR   00CDH   A   
+TI. . . . . . . . . . . . . . . .  B ADDR   0098H.1 A   
+TL0 . . . . . . . . . . . . . . .  D ADDR   008AH   A   
+TL1 . . . . . . . . . . . . . . .  D ADDR   008BH   A   
+TL2 . . . . . . . . . . . . . . .  D ADDR   00CCH   A   
+TMOD. . . . . . . . . . . . . . .  D ADDR   0089H   A   
+TR0 . . . . . . . . . . . . . . .  B ADDR   0088H.4 A   
+TR1 . . . . . . . . . . . . . . .  B ADDR   0088H.6 A   
+TR2 . . . . . . . . . . . . . . .  B ADDR   00C8H.2 A   
+TXD . . . . . . . . . . . . . . .  B ADDR   00B0H.1 A   
+UNLOCKSCHMUTEX. . . . . . . . . .  C ADDR   0000H   R   SEG=?PR?UNLOCKSCHMUTEX?SCHEDULE
+UPDATEPRIORTSKQUEUE . . . . . . .  C ADDR   0000H   R   SEG=?PR?UPDATEPRIORTSKQUEUE?SCHEDULE
+UPDATETSKQUEUE. . . . . . . . . .  C ADDR   0000H   R   SEG=?PR?UPDATETSKQUEUE?SCHEDULE
+WR. . . . . . . . . . . . . . . .  B ADDR   00B0H.6 A   
+_DEREGISTERPRIORTASK. . . . . . .  C ADDR   0000H   R   SEG=?PR?_DEREGISTERPRIORTASK?SCHEDULE
+_DEREGISTERTASK . . . . . . . . .  C ADDR   0000H   R   SEG=?PR?_DEREGISTERTASK?SCHEDULE
+_REGISTERPRIORTASK. . . . . . . .  C ADDR   0000H   R   SEG=?PR?_REGISTERPRIORTASK?SCHEDULE
+_REGISTERTASK . . . . . . . . . .  C ADDR   0000H   R   SEG=?PR?_REGISTERTASK?SCHEDULE
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

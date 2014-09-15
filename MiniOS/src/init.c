@@ -1,6 +1,7 @@
 
 #include "../include/system.h"
 #include "../include/macro.h"
+#include "../include/schedule.h"
 
 void InitVars();
 void InitTasks();
@@ -24,7 +25,7 @@ void InitVars()
 	gSCB.timeSlice = 0;
 	gSCB.intNestCnt = 0;
 	gSCB.schMutex = 0;	
-	gSCB.eventFlag = EVENT_OFF;
+	gSCB.priorityFlag = PRIORITY_ON;
 	gSCB.sysMode = SYS_STOP;
 	gSCB.sysRunningFlag = SYS_OFF;
 	
@@ -80,4 +81,8 @@ void setTCB(uint8_t taskNum)
 	gTCBs[taskNum].taskSP = (uint16_t)(& gTskStacks[taskNum][1]) & 0xff;
 	gTCBs[taskNum].curTskStat = TSK_READY;
 	gTCBs[taskNum].storeTskStat = 0;
+}
+
+void SysTimerOn()
+{
 }

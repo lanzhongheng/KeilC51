@@ -12,5 +12,8 @@
 #define	MAX_TSK_STACK_SIZE	20
 //#endif
 
+#define SYS_TIMESLICE	5
+
+#define MAX_INTNEST_CNT 5
 
 #endif /*CONFIG_H*/

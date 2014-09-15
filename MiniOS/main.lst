@@ -1,9 +1,9 @@
-C51 COMPILER V7.06   MAIN                                                                  09/13/2014 03:08:21 PAGE 1   
+C51 COMPILER V7.06   MAIN                                                                  09/15/2014 23:51:52 PAGE 1   
 
 
 C51 COMPILER V7.06, COMPILATION OF MODULE MAIN
-OBJECT MODULE PLACED IN main.obj
-COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE src\main.c BROWSE DEBUG OBJECTEXTEND PRINT(.\main.lst) OBJECT(main.obj)
+OBJECT MODULE PLACED IN src\main.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE src\main.c BROWSE DEBUG OBJECTEXTEND PRINT(.\main.lst) SRC(.\main.SRC)
 
 stmt level    source
 
@@ -11,75 +11,110 @@ stmt level    source
    2          #include <reg52.h>
    3          #include "../include/init.h"
    4          #include "../include/system.h"
-   5          
-   6          void SystemOn();
+   5          #include "../include/schedule.h"
+   6          #include "../include/macro.h"
    7          
-   8          void main()
-   9          {
-  10   1              InitSystem();
-  11   1      
-  12   1              SystemOn();     
-  13   1      }
-  14          
-  15          /***********************/
+   8          void SystemOn();
+   9          
+  10          void main()
+  11          {
+  12   1              InitSystem();
+  13   1      
+  14   1              SystemOn();     
+  15   1      }
   16          
-  17          void SystemOn()
-  18          {
-  19   1              /*get task number from task queue*/
-  20   1              gSCB.nextTskNum = gTskQueue[1];
-  21   1              gSCB.curTskNum = gSCB.nextTskNum;
-  22   1              
-  23   1              /*get task entry from TCB*/
-  24   1              SP = gTCBs[gSCB.curTskNum].taskSP;
-  25   1      }
-  26          
-  27          /***********************/
-  28          
-  29          void Task0()
-  30          {
-  31   1              while (1)
-  32   1              {
-  33   2                      //TODO
-  34   2              }
-  35   1      }
-  36          
-  37          void Task1()
-  38          {
-  39   1              while (1)
-  40   1              {
-  41   2                      //TODO
-  42   2              }
-  43   1      }
-  44          
-  45          void Task2()
-  46          {
-  47   1              while (1)
-  48   1              {
-  49   2                      //TODO
-  50   2              }
-  51   1      }
-  52          
-  53          void Task3()
-  54          {
-  55   1              while (1)
-C51 COMPILER V7.06   MAIN                                                                  09/13/2014 03:08:21 PAGE 2   
+  17          /***********************/
+  18          
+  19          void SystemOn()
+  20          {
+  21   1              gSCB.sysRunningFlag = SYS_ON;
+  22   1              gSCB.sysMode = SYS_RUNNING;
+  23   1              
+  24   1              SysTimerOn();
+  25   1              
+  26   1              EA = INT_OFF;
+  27   1      
+  28   1              if (0 == gSCB.nextTskNum)
+  29   1              {
+  30   2                      if (PRIORITY_ON == gSCB.priorityFlag)
+  31   2                      {
+  32   3                              gSCB.nextTskNum = GetReadyPriorTsk();
+  33   3                      }
+  34   2                      else
+  35   2                      {
+  36   3                              gSCB.nextTskNum = GetReadyTsk();
+  37   3                      }
+  38   2              }
+  39   1      
+  40   1              gSCB.timeSlice = SYS_TIMESLICE;
+  41   1              gSCB.curTskNum = gSCB.nextTskNum;
+  42   1              gSCB.nextTskNum = 0;
+  43   1              SP = gTCBs[gSCB.curTskNum].taskSP;
+  44   1      
+  45   1              /*pop task stack data*/
+  46   1              __asm POP AR7
+  47   1              __asm POP AR6
+  48   1              __asm POP AR5
+  49   1              __asm POP AR4
+  50   1              //__asm POP AR3
+  51   1              //__asm POP AR2
+  52   1              __asm POP AR1
+  53   1              __asm POP AR0
+  54   1              __asm POP PSW
+  55   1              __asm POP B
+C51 COMPILER V7.06   MAIN                                                                  09/15/2014 23:51:52 PAGE 2   
 
-  56   1              {
-  57   2                      //TODO
-  58   2              }
-  59   1      }
-  60          
-  61          void Task4()
-  62          {
-  63   1              while (1)
-  64   1              {
-  65   2                      //TODO
-  66   2              }
-  67   1      }
+  56   1              __asm POP ACC
+  57   1              
+  58   1              EA = INT_ON;
+  59   1              
+  60   1      }
+  61          
+  62          /***********************/
+  63          
+  64          void Task0()
+  65          {
+  66   1              while (1)
+  67   1              {
+  68   2                      //TODO
+  69   2              }
+  70   1      }
+  71          
+  72          void Task1()
+  73          {
+  74   1              while (1)
+  75   1              {
+  76   2                      //TODO
+  77   2              }
+  78   1      }
+  79          
+  80          void Task2()
+  81          {
+  82   1              while (1)
+  83   1              {
+  84   2                      //TODO
+  85   2              }
+  86   1      }
+  87          
+  88          void Task3()
+  89          {
+  90   1              while (1)
+  91   1              {
+  92   2                      //TODO
+  93   2              }
+  94   1      }
+  95          
+  96          void Task4()
+  97          {
+  98   1              while (1)
+  99   1              {
+ 100   2                      //TODO
+ 101   2              }
+ 102   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     36    ----
+   CODE SIZE        =     99    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

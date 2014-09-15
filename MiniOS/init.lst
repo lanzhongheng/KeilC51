@@ -1,4 +1,4 @@
-C51 COMPILER V7.06   INIT                                                                  09/13/2014 03:08:21 PAGE 1   
+C51 COMPILER V7.06   INIT                                                                  09/15/2014 23:51:52 PAGE 1   
 
 
 C51 COMPILER V7.06, COMPILATION OF MODULE INIT
@@ -10,92 +10,97 @@ stmt level    source
    1          
    2          #include "../include/system.h"
    3          #include "../include/macro.h"
-   4          
-   5          void InitVars();
-   6          void InitTasks();
-   7          void setTaskStack(TaskPtr task, uint8_t taskNum);
-   8          void setTCB(uint8_t taskNum);
-   9          
-  10          void InitSystem()
-  11          {
-  12   1              InitVars();
-  13   1              InitTasks();
-  14   1      }
-  15          
-  16          void InitVars()
-  17          {
-  18   1              uint8_t i;
-  19   1              uint8_t j;
-  20   1      
-  21   1              /*init SCB*/
-  22   1              gSCB.curTskNum = 0;
-  23   1              gSCB.nextTskNum = 0;    
-  24   1              gSCB.timeSlice = 0;
-  25   1              gSCB.intNestCnt = 0;
-  26   1              gSCB.schMutex = 0;      
-  27   1              gSCB.eventFlag = EVENT_OFF;
-  28   1              gSCB.sysMode = SYS_STOP;
-  29   1              gSCB.sysRunningFlag = SYS_OFF;
-  30   1              
-  31   1              /*init task queue*/     
-  32   1              for (i = 0; i < MAX_TSK_NUM; i++)
-  33   1              {
-  34   2                      gTskQueue[i] = 0;
-  35   2              }
-  36   1      
-  37   1              /*init task stacks*/
-  38   1              for (i = 0; i < MAX_TSK_NUM; i++)
-  39   1              {
-  40   2                      for (j = 0; j < MAX_TSK_STACK_SIZE; j++)
-  41   2                      {
-  42   3                              gTskStacks[i][j] = 0;
-  43   3                      }
-  44   2              }
-  45   1      }
-  46          
-  47          void InitTasks()
-  48          {
-  49   1              uint8_t i;
-  50   1      
-  51   1              /*push tasks' entries into task stack*/
-  52   1              setTaskStack(Task0, 0); 
-  53   1              setTaskStack(Task1, 1);
-  54   1              setTaskStack(Task2, 2);
-  55   1              setTaskStack(Task3, 3);
-C51 COMPILER V7.06   INIT                                                                  09/13/2014 03:08:21 PAGE 2   
+   4          #include "../include/schedule.h"
+   5          
+   6          void InitVars();
+   7          void InitTasks();
+   8          void setTaskStack(TaskPtr task, uint8_t taskNum);
+   9          void setTCB(uint8_t taskNum);
+  10          
+  11          void InitSystem()
+  12          {
+  13   1              InitVars();
+  14   1              InitTasks();
+  15   1      }
+  16          
+  17          void InitVars()
+  18          {
+  19   1              uint8_t i;
+  20   1              uint8_t j;
+  21   1      
+  22   1              /*init SCB*/
+  23   1              gSCB.curTskNum = 0;
+  24   1              gSCB.nextTskNum = 0;    
+  25   1              gSCB.timeSlice = 0;
+  26   1              gSCB.intNestCnt = 0;
+  27   1              gSCB.schMutex = 0;      
+  28   1              gSCB.priorityFlag = PRIORITY_ON;
+  29   1              gSCB.sysMode = SYS_STOP;
+  30   1              gSCB.sysRunningFlag = SYS_OFF;
+  31   1              
+  32   1              /*init task queue*/     
+  33   1              for (i = 0; i < MAX_TSK_NUM; i++)
+  34   1              {
+  35   2                      gTskQueue[i] = 0;
+  36   2              }
+  37   1      
+  38   1              /*init task stacks*/
+  39   1              for (i = 0; i < MAX_TSK_NUM; i++)
+  40   1              {
+  41   2                      for (j = 0; j < MAX_TSK_STACK_SIZE; j++)
+  42   2                      {
+  43   3                              gTskStacks[i][j] = 0;
+  44   3                      }
+  45   2              }
+  46   1      }
+  47          
+  48          void InitTasks()
+  49          {
+  50   1              uint8_t i;
+  51   1      
+  52   1              /*push tasks' entries into task stack*/
+  53   1              setTaskStack(Task0, 0); 
+  54   1              setTaskStack(Task1, 1);
+  55   1              setTaskStack(Task2, 2);
+C51 COMPILER V7.06   INIT                                                                  09/15/2014 23:51:52 PAGE 2   
 
-  56   1              setTaskStack(Task4, 4);
-  57   1      
-  58   1              /*set TCBs*/
-  59   1              for (i = 0; i < MAX_TSK_NUM; i++)
-  60   1              {
-  61   2                      setTCB(i);
-  62   2              }
-  63   1      
-  64   1              /*add task to task queue, NO.0 task is an idle task*/
-  65   1              for (i = 0; i < MAX_TSK_NUM; i++)
-  66   1              {
-  67   2                      gTskQueue[i] = i;
-  68   2              }
-  69   1      }
-  70          
-  71          void setTaskStack(TaskPtr task, uint8_t taskNum)
-  72          {
-  73   1              gTskStacks[taskNum][0] = (uint8_t)((uint16_t)task & 0xff);
-  74   1              gTskStacks[taskNum][1] = (uint8_t)(((uint16_t)task >> 8) & 0xff);               
-  75   1      } 
-  76          
-  77          void setTCB(uint8_t taskNum)
-  78          {
-  79   1              gTCBs[taskNum].delayTime = 0;
-  80   1              gTCBs[taskNum].taskSP = (uint16_t)(& gTskStacks[taskNum][1]) & 0xff;
-  81   1              gTCBs[taskNum].curTskStat = TSK_READY;
-  82   1              gTCBs[taskNum].storeTskStat = 0;
-  83   1      }
+  56   1              setTaskStack(Task3, 3);
+  57   1              setTaskStack(Task4, 4);
+  58   1      
+  59   1              /*set TCBs*/
+  60   1              for (i = 0; i < MAX_TSK_NUM; i++)
+  61   1              {
+  62   2                      setTCB(i);
+  63   2              }
+  64   1      
+  65   1              /*add task to task queue, NO.0 task is an idle task*/
+  66   1              for (i = 0; i < MAX_TSK_NUM; i++)
+  67   1              {
+  68   2                      gTskQueue[i] = i;
+  69   2              }
+  70   1      }
+  71          
+  72          void setTaskStack(TaskPtr task, uint8_t taskNum)
+  73          {
+  74   1              gTskStacks[taskNum][0] = (uint8_t)((uint16_t)task & 0xff);
+  75   1              gTskStacks[taskNum][1] = (uint8_t)(((uint16_t)task >> 8) & 0xff);               
+  76   1      } 
+  77          
+  78          void setTCB(uint8_t taskNum)
+  79          {
+  80   1              gTCBs[taskNum].delayTime = 0;
+  81   1              gTCBs[taskNum].taskSP = (uint16_t)(& gTskStacks[taskNum][1]) & 0xff;
+  82   1              gTCBs[taskNum].curTskStat = TSK_READY;
+  83   1              gTCBs[taskNum].storeTskStat = 0;
+  84   1      }
+  85          
+  86          void SysTimerOn()
+  87          {
+  88   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    222    ----
+   CODE SIZE        =    224    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

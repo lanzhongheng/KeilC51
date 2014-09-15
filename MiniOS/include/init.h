@@ -4,4 +4,6 @@
 
 void InitSystem();
 
+void SysTimerOn();
+
 #endif

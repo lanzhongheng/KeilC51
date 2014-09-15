@@ -17,12 +17,14 @@
 /*flags*/
 #define	SYS_ON			0xff
 #define	SYS_OFF			0x00
-#define	EVENT_ON		0xff
-#define	EVENT_OFF		0x00
+#define	PRIORITY_ON		0xff
+#define	PRIORITY_OFF	0x00
 #define	INT_ON			0x01
 #define	INT_OFF			0x00
 #define	TIMEOUT_ON		0xff
-#define	TIMEOUT_OFF		0x00	
+#define	TIMEOUT_OFF		0x00
+#define SCHMUTEX_ON		1
+#define SCHMUTEX_OFF	0	
 
 
 #endif

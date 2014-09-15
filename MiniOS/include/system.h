@@ -21,7 +21,7 @@ struct SCB {
 	uint8_t intNestCnt;
 
 	/*preemptive task flag*/
-	uint8_t eventFlag;
+	uint8_t priorityFlag;
 
 	/*sytem mode*/
 	uint8_t sysMode;
@@ -56,6 +56,7 @@ extern uint8_t idata gTskStacks[MAX_TSK_NUM][MAX_TSK_STACK_SIZE];
 
 /*task queue*/
 extern uint8_t idata gTskQueue[MAX_TSK_NUM];
+extern uint8_t idata gPriorTskQueue[MAX_TSK_NUM];
 
 /*task TCBs*/
 extern struct TCB idata gTCBs[MAX_TSK_NUM];

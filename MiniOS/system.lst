@@ -1,4 +1,4 @@
-C51 COMPILER V7.06   SYSTEM                                                                09/13/2014 03:08:21 PAGE 1   
+C51 COMPILER V7.06   SYSTEM                                                                09/15/2014 23:51:52 PAGE 1   
 
 
 C51 COMPILER V7.06, COMPILATION OF MODULE SYSTEM
@@ -18,7 +18,9 @@ stmt level    source
    8          
    9          uint8_t idata gTskQueue[MAX_TSK_NUM];
   10          
-  11          struct TCB idata gTCBs[MAX_TSK_NUM];
+  11          uint8_t idata gPriorTskQueue[MAX_TSK_NUM];
+  12          
+  13          struct TCB idata gTCBs[MAX_TSK_NUM];
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
@@ -27,7 +29,7 @@ MODULE INFORMATION:   STATIC OVERLAYABLE
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
    DATA SIZE        =      8    ----
-   IDATA SIZE       =    130    ----
+   IDATA SIZE       =    135    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.
 
